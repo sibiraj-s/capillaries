@@ -23,6 +23,7 @@ const cjsOutputConfig = {
 const esmOutputConfig = {
   file: 'dist/capillaries.esm.js',
   format: 'es',
+  banner,
   sourcemap: true
 };
 
@@ -30,6 +31,7 @@ const umdOutputConfig = {
   file: 'dist/capillaries.umd.js',
   format: 'umd',
   name: 'Capillaries',
+  banner,
   sourcemap: true
 };
 
