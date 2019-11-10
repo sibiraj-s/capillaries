@@ -13,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v1.1.1 (2019-11-10)
+
+#### Bug Fixes
+
+- update typings ([44ddfe2](https://github.com/sibiraj-s/capillaries/commit/44ddfe2))
+
 ## v1.1.0 (2019-11-10)
 
 #### Features
