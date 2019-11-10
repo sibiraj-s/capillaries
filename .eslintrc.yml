@@ -1,0 +1,16 @@
+extends:
+  - airbnb-base
+
+plugins:
+  - jest
+
+rules:
+  max-len:
+    - error
+    - code: 120
+  comma-dangle:
+    - error
+    - never
+
+env:
+  jest/globals: true

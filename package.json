@@ -1,0 +1,45 @@
+{
+  "name": "capillaries",
+  "version": "0.0.0",
+  "description": "Javascript Events",
+  "author": "sibiraj-s",
+  "license": "MIT",
+  "private": true,
+  "repository": "https://github.com/sibiraj-s/capillaries.git",
+  "bugs": "https://github.com/sibiraj-s/capillaries/issues",
+  "homepage": "https://github.com/sibiraj-s/capillaries#readme",
+  "main": "index.js",
+  "keywords": [
+    "javascript-events",
+    "events"
+  ],
+  "scripts": {
+    "develop": "rollup -c rollup.config.js -w",
+    "rollup": "rollup -c rollup.config.js",
+    "minify": "node ./scripts/minify.js",
+    "prebuild": "node ./scripts/prebuild.js",
+    "build": "npm run rollup && npm run minify",
+    "postbuild": "node ./scripts/postbuild.js",
+    "test": "NODE_ENV=test jest --verbose",
+    "prerelease": "npm run build",
+    "prepublishOnly": "node ./scripts/prepublish.js",
+    "release": "sh ./scripts/release.sh"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-jest": "^24.9.0",
+    "chalk": "^3.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.3",
+    "glob": "^7.1.6",
+    "husky": "^3.0.9",
+    "jest": "^24.9.0",
+    "lint-staged": "^9.4.2",
+    "rollup": "^1.26.4",
+    "rollup-plugin-babel": "^4.3.3",
+    "terser": "^4.3.10"
+  }
+}
