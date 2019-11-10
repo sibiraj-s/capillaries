@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel';
 
 import pkg from './package.json';
 
-const srcFile = './index.js';
+const srcFile = './capillaries.js';
 
 const banner = `/*!
  * @module ${pkg.name}

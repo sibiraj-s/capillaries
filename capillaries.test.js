@@ -1,4 +1,4 @@
-import Capillaries from '.';
+import Capillaries from './capillaries';
 
 const event = new Capillaries();
 const payload = 'Test Payload';

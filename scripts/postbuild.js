@@ -16,7 +16,7 @@ async function copyFile(fileName, cb) {
       cb();
     }
   } catch (err) {
-    console.error(chalk.red('Unable to copy file'), fileName);
+    console.error(chalk.red('Unable to copy file:'), fileName);
     console.error(err);
   }
 }
@@ -27,9 +27,10 @@ async function preparePackageJson() {
   try {
     const packageJsonString = await fs.readFile(packageJsonPath, 'utf-8');
     const packageJson = JSON.parse(packageJsonString);
-    packageJson.main = 'capillaries.min.js';
+    packageJson.main = 'capillaries.js';
+    packageJson.module = 'capillaries.esm.js';
     packageJson.browser = 'capillaries.umd.min.js';
-    packageJson.module = 'capillaries.esm.min.js';
+    packageJson.types = 'capillaries.d.ts';
 
     delete packageJson.scripts;
     delete packageJson.devDependencies;
@@ -45,4 +46,5 @@ async function preparePackageJson() {
 
 copyFile('README.md');
 copyFile('LICENSE');
+copyFile('capillaries.d.ts');
 copyFile('package.json', preparePackageJson);
