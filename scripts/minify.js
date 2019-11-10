@@ -38,6 +38,7 @@ async function minify() {
       const minifiedJs = Terser.minify(js, terserOptions);
       await fs.writeFile(outFilePath, minifiedJs.code, 'utf-8');
       await fs.writeFile(outMapFilePath, minifiedJs.map, 'utf-8');
+      console.log(chalk.green('Minified:'), `${filename} --> ${outFilename}`);
       i += 1;
     }
   } catch (err) {
