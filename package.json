@@ -40,6 +40,6 @@
     "lint-staged": "^9.4.2",
     "rollup": "^1.26.4",
     "rollup-plugin-babel": "^4.3.3",
-    "terser": "^4.3.10"
+    "terser": "^4.3.11"
   }
 }
