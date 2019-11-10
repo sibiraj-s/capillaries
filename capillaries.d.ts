@@ -1,4 +1,4 @@
-export class Capillaries {
+declare class Capillaries {
   /**
    * Create event listener
    *
@@ -23,3 +23,5 @@ export class Capillaries {
    */
   emit(type: string, payload?: any)
 }
+
+export = Capillaries
