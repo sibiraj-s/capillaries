@@ -3,15 +3,14 @@ import Capillaries from './capillaries';
 const event = new Capillaries();
 const payload = 'Test Payload';
 
-afterAll(() => event.detachAll());
+afterAll(() => event.unbindAll());
 
 it('should initiate correctly', () => {
   expect(event).toBeInstanceOf(Capillaries);
   expect(event.on).toBeInstanceOf(Function);
   expect(event.off).toBeInstanceOf(Function);
   expect(event.emit).toBeInstanceOf(Function);
-  expect(event.detachEvents).toBeInstanceOf(Function);
-  expect(event.detachAll).toBeInstanceOf(Function);
+  expect(event.unbindAll).toBeInstanceOf(Function);
 });
 
 it('should bind to events and invoke events when emitted', () => {
@@ -52,35 +51,11 @@ it('should invoke event listeners with given arguments', () => {
   expect(callbackFn).not.toHaveBeenCalledWith('payload');
 });
 
-it('should detach given events', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
-  const callbackFnS = jest.fn();
-  const callbackFnT = jest.fn();
-
-  event.on('q', callbackFnQ);
-  event.on('r', callbackFnR);
-  event.on('s', callbackFnS);
-  event.on('t', callbackFnT);
-
-  event.detachEvents(['s', 't']);
-
-  event.emit('q', payload);
-  event.emit('r', payload);
-  event.emit('t', payload);
-  event.emit('t', payload);
-
-  expect(callbackFnQ).toBeCalled();
-  expect(callbackFnR).toBeCalled();
-  expect(callbackFnS).not.toBeCalled();
-  expect(callbackFnT).not.toBeCalled();
-});
-
 it('should throw error when event listerner is not a function', () => {
   expect(() => event.on('q')).toThrow(TypeError);
 });
 
-it('should detach all events when listerner reference is not passed', () => {
+it('should unbind all events when listerner reference is not passed', () => {
   const callbackFnQ = jest.fn();
   const callbackFnQ2 = jest.fn();
 
@@ -95,7 +70,7 @@ it('should detach all events when listerner reference is not passed', () => {
   expect(callbackFnQ2).not.toBeCalled();
 });
 
-it('should detach correct events', () => {
+it('should unbind correct events', () => {
   const callbackFnQ = jest.fn();
   const callbackFnR = jest.fn();
 
@@ -111,7 +86,7 @@ it('should detach correct events', () => {
   expect(callbackFnR).toBeCalled();
 });
 
-it('should not detach events when off method is invoked with invalid type', () => {
+it('should not unbind events when off method is invoked with invalid type', () => {
   const callbackFnQ = jest.fn();
   const callbackFnR = jest.fn();
 
@@ -128,7 +103,7 @@ it('should not detach events when off method is invoked with invalid type', () =
   expect(callbackFnR).toBeCalled();
 });
 
-it('should detach all when detachAll is invoked', () => {
+it('should unbind all when unbindAll is invoked', () => {
   const evt = new Capillaries();
 
   const callbackFnQ = jest.fn();
@@ -141,7 +116,7 @@ it('should detach all when detachAll is invoked', () => {
   evt.on('s', callbackFnS);
   evt.on('t', callbackFnT);
 
-  evt.detachAll();
+  evt.unbindAll();
 
   evt.emit('q', payload);
   evt.emit('r', payload);

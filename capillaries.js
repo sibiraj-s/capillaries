@@ -8,7 +8,6 @@ function Capillaries() {
 
     const event = events[type] || [];
     event.push([listener, ctx]);
-
     events[type] = event;
   };
 
@@ -31,14 +30,8 @@ function Capillaries() {
     });
   };
 
-  this.detachAll = function detachAll() {
+  this.unbindAll = function unbindAll() {
     events = {};
-  };
-
-  this.detachEvents = function detachEvents(eventsArr) {
-    eventsArr.forEach((type) => {
-      delete events[type];
-    });
   };
 }
 
