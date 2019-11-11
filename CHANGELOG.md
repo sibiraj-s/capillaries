@@ -13,6 +13,18 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.0.0 (2019-11-11)
+
+#### Breaking Changes
+
+- remove `detachEvents` method ([c701e6d](https://github.com/sibiraj-s/capillaries/commit/c701e6d))
+- rename `detachAll` method to `unbindAll` ([c701e6d](https://github.com/sibiraj-s/capillaries/commit/c701e6d))
+
+#### Internal
+
+- update rollup to v1.26.5 ([19e6cc8](https://github.com/sibiraj-s/capillaries/commit/19e6cc8))
+- update terser to v4.4.0 ([19e6cc8](https://github.com/sibiraj-s/capillaries/commit/19e6cc8))
+
 ## v1.1.1 (2019-11-10)
 
 #### Bug Fixes
