@@ -60,11 +60,8 @@ event.off('connected', listener);
 // remove all listeners for an event
 event.off('connected');
 
-// detach multiple event listeners
-event.detachEvents(['connecting', 'connected']);
-
-// detach all event listeners
-event.detachAll();
+// unbind all event listeners
+event.unbindAll();
 ```
 
 ### API
@@ -78,8 +75,7 @@ const event = new Capillaries();
 - event.on
 - event.off
 - event.emit
-- event.detachEvents
-- event.detachAll
+- event.unbindAll
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
