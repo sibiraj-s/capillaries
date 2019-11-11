@@ -33,6 +33,8 @@ function Capillaries() {
   this.unbindAll = function unbindAll() {
     events = {};
   };
+
+  Object.freeze(this);
 }
 
 export default Capillaries;

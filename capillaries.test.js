@@ -86,7 +86,7 @@ it('should unbind correct events', () => {
   expect(callbackFnR).toBeCalled();
 });
 
-it('should not unbind events when off method is invoked with invalid type', () => {
+it('should not unbind events when `off` method is invoked with invalid type', () => {
   const callbackFnQ = jest.fn();
   const callbackFnR = jest.fn();
 
@@ -103,7 +103,7 @@ it('should not unbind events when off method is invoked with invalid type', () =
   expect(callbackFnR).toBeCalled();
 });
 
-it('should unbind all when unbindAll is invoked', () => {
+it('should unbind all when `unbindAll` is invoked', () => {
   const evt = new Capillaries();
 
   const callbackFnQ = jest.fn();
@@ -129,4 +129,22 @@ it('should unbind all when unbindAll is invoked', () => {
   expect(callbackFnR).not.toBeCalled();
   expect(callbackFnS).not.toBeCalled();
   expect(callbackFnT).not.toBeCalled();
+});
+
+it('should be immutable', () => {
+  const func = jest.fn();
+  const callbackFnQ = jest.fn();
+
+  expect(() => { event.on = func; }).toThrow(TypeError);
+  expect(() => { event.off = func; }).toThrow(TypeError);
+  expect(() => { event.emit = func; }).toThrow(TypeError);
+  expect(() => { event.unbindAll = func; }).toThrow(TypeError);
+  expect(() => { event.newFunc = func; }).toThrow(TypeError);
+
+  event.on('q', callbackFnQ);
+  event.emit('q', payload);
+
+  expect(func).not.toBeCalled();
+  expect(event.newFunc).toBe(undefined);
+  expect(callbackFnQ).toBeCalled();
 });
