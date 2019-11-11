@@ -3,6 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 > **Tags**
+>
 > - Features
 > - Bug Fixes
 > - Performance Improvements
@@ -12,6 +13,12 @@ All notable changes to this project will be documented in this file.
 > - Documentation
 > - Internal
 > - Unreleased
+
+## v2.0.1 (2019-11-11)
+
+#### Documentation
+
+- remove/update outdated api's from README.md ([8db7c34](https://github.com/sibiraj-s/capillaries/commit/8db7c34))
 
 ## v2.0.0 (2019-11-11)
 
