@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.0.2 (2019-11-12)
+
+#### Enhancements
+
+- return immutable object while invoking the constructor function ([b691adf](https://github.com/sibiraj-s/capillaries/commit/b691adf))
+
 ## v2.0.1 (2019-11-11)
 
 #### Documentation
