@@ -8,7 +8,7 @@
   "repository": "https://github.com/sibiraj-s/capillaries.git",
   "bugs": "https://github.com/sibiraj-s/capillaries/issues",
   "homepage": "https://github.com/sibiraj-s/capillaries#readme",
-  "main": "index.js",
+  "main": "capillaries.js",
   "keywords": [
     "javascript-events",
     "events"
