@@ -77,6 +77,15 @@ const event = new Capillaries();
 - event.emit
 - event.unbindAll
 
+### Browser compatibility
+
+- Internet Explorer 9+
+- Chrome 6+
+- Edge 12+
+- Firefox 4+
+- Opera 12+
+- Safari 5.1+
+
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
 [umd]: https://github.com/umdjs/umd
