@@ -14,6 +14,13 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.0.3 (2019-11-12)
+
+#### Internal
+
+- update rollup to v1.27.0 ([6d14f87](https://github.com/sibiraj-s/capillaries/commit/6d14f87))
+- update main field in package.json ([9bd7f6a](https://github.com/sibiraj-s/capillaries/commit/9bd7f6a))
+
 ## v2.0.2 (2019-11-12)
 
 #### Enhancements
