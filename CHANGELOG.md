@@ -14,6 +14,13 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.0.4 (2019-11-17)
+
+#### Internal
+
+- migrate from travis-ci to Github actions ([edb028f](https://github.com/sibiraj-s/capillaries/commit/edb028f))
+- bump devDependencies ([c387a5d](https://github.com/sibiraj-s/capillaries/commit/c387a5d))
+
 ## v2.0.3 (2019-11-12)
 
 #### Internal
