@@ -1,4 +1,4 @@
-# Capillaries [![Build Status](https://travis-ci.com/sibiraj-s/capillaries.svg?branch=master)](https://travis-ci.com/sibiraj-s/capillaries)
+# Capillaries [![Tests](https://github.com/sibiraj-s/capillaries/workflows/Tests/badge.svg)](https://github.com/sibiraj-s/capillaries/actions)
 
 > Javascript Events
 
