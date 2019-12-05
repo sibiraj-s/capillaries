@@ -14,12 +14,7 @@
     "events"
   ],
   "scripts": {
-    "develop": "rollup -c rollup.config.js -w",
-    "rollup": "rollup -c rollup.config.js",
-    "minify": "node ./scripts/minify.js",
-    "prebuild": "node ./scripts/prebuild.js",
-    "build": "npm run rollup && npm run minify",
-    "postbuild": "node ./scripts/postbuild.js",
+    "build": "gulp build",
     "test": "NODE_ENV=test jest --verbose",
     "prerelease": "npm run build",
     "prepublishOnly": "node ./scripts/prepublish.js",
@@ -34,12 +29,15 @@
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^23.0.4",
-    "glob": "^7.1.6",
+    "gulp": "^4.0.2",
+    "gulp-plugin-terser": "^1.0.1",
+    "gulp-sourcemaps": "^2.6.5",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "lint-staged": "^9.4.3",
     "rollup": "^1.27.0",
     "rollup-plugin-babel": "^4.3.3",
-    "terser": "^4.4.0"
+    "terser": "^4.4.0",
+    "through2": "^3.0.1"
   }
 }
