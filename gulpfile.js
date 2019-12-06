@@ -95,14 +95,7 @@ async function copyFiles() {
     .pipe(gulp.dest(outDir));
 }
 
-const tasks = [
-  cleanOutDir,
-  compile,
-  minify,
-  copyFiles
-];
-
-const build = gulp.series(...tasks);
+const build = gulp.series(cleanOutDir, compile, minify, copyFiles);
 
 exports.build = build;
 exports.default = build;
