@@ -55,8 +55,8 @@ async function compile() {
   });
 }
 
-async function minify() {
-  gulp.src('dist/*.js')
+function minify() {
+  return gulp.src('dist/*.js')
     .pipe(sourcemap.init())
     .pipe(terser())
     .pipe(sourcemap.write('.'))
