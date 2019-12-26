@@ -6,7 +6,6 @@ const rollup = require('rollup');
 const babel = require('rollup-plugin-babel');
 const terser = require('gulp-plugin-terser');
 const sourcemap = require('gulp-sourcemaps');
-const through2 = require('through2');
 
 const pkg = require('./package.json');
 
@@ -64,38 +63,35 @@ async function minify() {
     .pipe(gulp.dest('dist'));
 }
 
-function updatePackageJSON() {
-  const transform = through2.obj((file, _, callback) => {
-    const modifiedFile = file.clone();
-    const packageJson = JSON.parse(file.contents.toString());
+async function preparePackageJson() {
+  const targetPkgPath = path.resolve(outDir, 'package.json');
+  const jsonStr = await fs.promises.readFile(targetPkgPath, 'utf-8');
 
-    packageJson.main = 'capillaries.js';
-    packageJson.module = 'capillaries.esm.js';
-    packageJson.browser = 'capillaries.umd.min.js';
-    packageJson.types = 'capillaries.d.ts';
+  const packageJson = JSON.parse(jsonStr);
 
-    delete packageJson.scripts;
-    delete packageJson.devDependencies;
-    delete packageJson.private;
+  packageJson.main = 'capillaries.js';
+  packageJson.module = 'capillaries.esm.js';
+  packageJson.browser = 'capillaries.umd.min.js';
+  packageJson.types = 'capillaries.d.ts';
 
-    modifiedFile.contents = Buffer.from(JSON.stringify((packageJson), null, 2));
-    callback(null, modifiedFile);
-  });
+  delete packageJson.scripts;
+  delete packageJson.devDependencies;
+  delete packageJson.private;
 
-  return transform;
+  await fs.promises.writeFile(targetPkgPath, JSON.stringify(packageJson, null, 2));
 }
 
-async function copyFiles() {
-  gulp.src('README.md').pipe(gulp.dest(outDir));
-  gulp.src('CHANGELOG.md').pipe(gulp.dest(outDir));
-  gulp.src('LICENSE').pipe(gulp.dest(outDir));
-  gulp.src('capillaries.d.ts').pipe(gulp.dest(outDir));
-  gulp.src('package.json')
-    .pipe(updatePackageJSON())
-    .pipe(gulp.dest(outDir));
+function copyFiles() {
+  return gulp.src([
+    'README.md',
+    'CHANGELOG.md',
+    'LICENSE',
+    'capillaries.d.ts',
+    'package.json'
+  ]).pipe(gulp.dest(outDir));
 }
 
-const build = gulp.series(cleanOutDir, compile, minify, copyFiles);
+const build = gulp.series(cleanOutDir, compile, minify, copyFiles, preparePackageJson);
 
 exports.build = build;
 exports.default = build;
