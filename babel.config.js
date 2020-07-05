@@ -8,10 +8,10 @@ module.exports = (api) => {
         '@babel/preset-env',
         {
           targets: {
-            node: 'current'
-          }
-        }
-      ]
-    ].filter(Boolean)
+            node: 'current',
+          },
+        },
+      ],
+    ].filter(Boolean),
   };
 };

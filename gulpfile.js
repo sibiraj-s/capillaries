@@ -28,22 +28,22 @@ async function compile() {
   const bundle = await rollup.rollup({
     input: './capillaries.js',
     plugins: [
-      babel({ babelHelpers: 'bundled' })
-    ]
+      babel({ babelHelpers: 'bundled' }),
+    ],
   });
 
   await bundle.write({
     file: 'dist/capillaries.js',
     format: 'cjs',
     sourcemap: true,
-    banner
+    banner,
   });
 
   await bundle.write({
     file: 'dist/capillaries.esm.js',
     format: 'es',
     sourcemap: true,
-    banner
+    banner,
   });
 
   await bundle.write({
@@ -51,7 +51,7 @@ async function compile() {
     format: 'umd',
     name: 'Capillaries',
     sourcemap: true,
-    banner
+    banner,
   });
 }
 
@@ -87,7 +87,7 @@ function copyFiles() {
     'CHANGELOG.md',
     'LICENSE',
     'capillaries.d.ts',
-    'package.json'
+    'package.json',
   ]).pipe(gulp.dest(outDir));
 }
 

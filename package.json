@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "build": "gulp build",
+    "lint": "eslint .",
     "test": "NODE_ENV=test jest --verbose",
     "prerelease": "npm run build",
     "prepublishOnly": "node ./scripts/prepublish.js",
@@ -28,6 +29,7 @@
     "chalk": "^4.1.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-config-pegasus": "^1.0.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^23.17.1",
     "gulp": "^4.0.2",

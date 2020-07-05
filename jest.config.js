@@ -86,7 +86,7 @@ module.exports = {
   // An array of regexp pattern strings,
   // matched against all module paths before considered 'visible' to the module loader
   modulePathIgnorePatterns: [
-    '<rootDir>/dist/'
+    '<rootDir>/dist/',
   ],
 
   // Activates notifications for test results
@@ -173,8 +173,8 @@ module.exports = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+\\.js?$': 'babel-jest'
-  }
+    '^.+\\.js?$': 'babel-jest',
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths,
   // matched files will skip transformation
