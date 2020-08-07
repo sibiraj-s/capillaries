@@ -35,6 +35,7 @@ async function compile() {
   await bundle.write({
     file: 'dist/capillaries.js',
     format: 'cjs',
+    exports: 'auto',
     sourcemap: true,
     banner,
   });
