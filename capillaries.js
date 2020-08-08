@@ -1,40 +1,42 @@
-function Capillaries() {
-  let events = {};
+class Capillaries {
+  #events = {};
 
-  this.on = (type, listener, ctx = null) => {
+  constructor() {
+    Object.freeze(this);
+  }
+
+  on(type, listener, ctx = null) {
     if (typeof listener !== 'function') {
       throw new TypeError('Event Listener must be a function');
     }
 
-    const event = events[type] || [];
+    const event = this.#events[type] || [];
     event.push([listener, ctx]);
-    events[type] = event;
-  };
+    this.#events[type] = event;
+  }
 
-  this.off = (type, listener) => {
+  off(type, listener) {
     if (typeof listener !== 'function') {
-      delete events[type];
+      delete this.#events[type];
       return;
     }
 
-    events[type] = (events[type] || []).filter((e) => e[0] !== listener);
-  };
+    this.#events[type] = (this.#events[type] || []).filter((e) => e[0] !== listener);
+  }
 
-  this.emit = (type, ...args) => {
-    const eventList = events[type] || [];
+  emit(type, ...args) {
+    const eventList = this.#events[type] || [];
 
     eventList.forEach((event) => {
       const listenerFn = event[0];
       const ctx = event[1];
       listenerFn.apply(ctx, args);
     });
-  };
+  }
 
-  this.unbindAll = () => {
-    events = {};
-  };
-
-  Object.freeze(this);
+  unbindAll() {
+    this.#events = {};
+  }
 }
 
 export default Capillaries;
