@@ -28,8 +28,7 @@ class Capillaries {
     const eventList = this.#events[type] || [];
 
     eventList.forEach((event) => {
-      const listenerFn = event[0];
-      const ctx = event[1];
+      const [listenerFn, ctx] = event;
       listenerFn.apply(ctx, args);
     });
   }

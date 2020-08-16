@@ -1,5 +1,4 @@
 extends:
-  - airbnb-base
   - pegasus
 
 plugins:
@@ -8,4 +7,5 @@ plugins:
 parser: '@babel/eslint-parser'
 
 env:
+  node: true
   jest/globals: true

@@ -145,10 +145,10 @@ it('should be immutable', () => {
   event.emit('q', payload);
 
   expect(func).not.toBeCalled();
-  expect(event.newFunc).toBe(undefined);
+  expect(typeof event.newFunc).toBe('undefined');
   expect(callbackFnQ).toBeCalled();
 });
 
 it('should not be able to access internal events propery', () => {
-  expect(event.events).toBe(undefined);
+  expect(typeof event.events).toBe('undefined');
 });

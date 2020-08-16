@@ -20,11 +20,11 @@ const banner = `/*!
  */
 `;
 
-async function cleanOutDir() {
+const cleanOutDir = async function () {
   await fs.promises.rmdir(outDir, { recursive: true });
-}
+};
 
-async function compile() {
+const compile = async function () {
   const bundle = await rollup.rollup({
     input: './capillaries.js',
     plugins: [
@@ -54,17 +54,17 @@ async function compile() {
     sourcemap: true,
     banner,
   });
-}
+};
 
-function minify() {
+const minify = function () {
   return gulp.src('dist/*.js')
     .pipe(sourcemap.init())
     .pipe(terser())
     .pipe(sourcemap.write('.'))
     .pipe(gulp.dest('dist'));
-}
+};
 
-async function preparePackageJson() {
+const preparePackageJson = async function () {
   const targetPkgPath = path.resolve(outDir, 'package.json');
   const jsonStr = await fs.promises.readFile(targetPkgPath, 'utf-8');
 
@@ -80,9 +80,9 @@ async function preparePackageJson() {
   delete packageJson.private;
 
   await fs.promises.writeFile(targetPkgPath, JSON.stringify(packageJson, null, 2));
-}
+};
 
-function copyFiles() {
+const copyFiles = function () {
   return gulp.src([
     'README.md',
     'CHANGELOG.md',
@@ -90,7 +90,7 @@ function copyFiles() {
     'capillaries.d.ts',
     'package.json',
   ]).pipe(gulp.dest(outDir));
-}
+};
 
 const build = gulp.series(cleanOutDir, compile, minify, copyFiles, preparePackageJson);
 
