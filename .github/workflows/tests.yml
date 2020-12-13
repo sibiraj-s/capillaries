@@ -5,8 +5,7 @@ on:
     branches: master
 
 env:
-  CI: true
-  NODE_VERSION: 12
+  NODE_VERSION: 14
 
 jobs:
   test:
@@ -24,6 +23,13 @@ jobs:
 
       - run: node --version
       - run: npm --version
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: NPM Install
         run: npm ci
@@ -47,6 +53,13 @@ jobs:
 
       - run: node --version
       - run: npm --version
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: NPM Install
         run: npm ci
