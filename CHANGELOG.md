@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.0.5 (2019-12-13)
+
+#### Internal
+
+- update LICENSE ([bcf4a48](https://github.com/sibiraj-s/capillaries/commit/bcf4a48))
+
 ## v2.0.4 (2019-11-17)
 
 #### Internal
