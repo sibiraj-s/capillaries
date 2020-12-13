@@ -1,7 +1,0 @@
-rules:
-  no-console:
-    - error
-    - allow:
-       - log
-       - error
-       - warn

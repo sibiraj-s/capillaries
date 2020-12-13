@@ -1,11 +1,16 @@
 extends:
   - pegasus
+  - pegasus/node
 
 plugins:
   - jest
 
 parser: '@babel/eslint-parser'
 
+overrides:
+  - files: 'scripts/*'
+    rules:
+      no-console: off
+
 env:
-  node: true
   jest/globals: true
