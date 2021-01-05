@@ -163,10 +163,6 @@ it('should be immutable', () => {
   const func = jest.fn();
   const callbackFnQ = jest.fn();
 
-  expect(() => { event.on = func; }).toThrow(TypeError);
-  expect(() => { event.off = func; }).toThrow(TypeError);
-  expect(() => { event.emit = func; }).toThrow(TypeError);
-  expect(() => { event.unbindAll = func; }).toThrow(TypeError);
   expect(() => { event.newFunc = func; }).toThrow(TypeError);
 
   event.on('q', callbackFnQ);
