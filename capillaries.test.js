@@ -12,6 +12,7 @@ it('should initiate correctly', () => {
   expect(event.off).toBeInstanceOf(Function);
   expect(event.emit).toBeInstanceOf(Function);
   expect(event.unbindAll).toBeInstanceOf(Function);
+  expect(event.events).toBeInstanceOf(Object);
 });
 
 it('should bind to events and invoke events when emitted', () => {
@@ -174,8 +175,4 @@ it('should be immutable', () => {
   expect(func).not.toBeCalled();
   expect(typeof event.newFunc).toBe('undefined');
   expect(callbackFnQ).toBeCalled();
-});
-
-it('should not be able to access internal events propery', () => {
-  expect(typeof event.events).toBe('undefined');
 });
