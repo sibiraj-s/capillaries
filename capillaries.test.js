@@ -12,7 +12,6 @@ it('should initiate correctly', () => {
   expect(event.off).toBeInstanceOf(Function);
   expect(event.emit).toBeInstanceOf(Function);
   expect(event.unbindAll).toBeInstanceOf(Function);
-  expect(event.events).toBeInstanceOf(Object);
 });
 
 it('should bind to events and invoke events when emitted', () => {
@@ -163,6 +162,10 @@ it('should be immutable', () => {
   const func = jest.fn();
   const callbackFnQ = jest.fn();
 
+  expect(() => { event.on = func; }).toThrow(TypeError);
+  expect(() => { event.off = func; }).toThrow(TypeError);
+  expect(() => { event.emit = func; }).toThrow(TypeError);
+  expect(() => { event.unbindAll = func; }).toThrow(TypeError);
   expect(() => { event.newFunc = func; }).toThrow(TypeError);
 
   event.on('q', callbackFnQ);
