@@ -14,6 +14,15 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.1.0 (2021-01-05)
+
+#### Features
+
+- disable sideEffects for webpack compilation ([8b2f0f8](https://github.com/sibiraj-s/capillaries/commit/8b2f0f8))
+- perfer modules instead of browser ([1db3597](https://github.com/sibiraj-s/capillaries/commit/1db3597))
+- support `*` wildcard event listener ([baf787f](https://github.com/sibiraj-s/capillaries/commit/baf787f))
+- remove private properties ([15bc041](https://github.com/sibiraj-s/capillaries/commit/15bc041))
+
 ## v2.0.6 (2020-12-13)
 
 #### Internal
