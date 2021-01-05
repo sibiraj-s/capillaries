@@ -2,6 +2,7 @@ import Capillaries from './capillaries';
 
 const event = new Capillaries();
 const payload = 'Test Payload';
+const payload2 = 'Test Payload 2';
 
 afterAll(() => event.unbindAll());
 
@@ -35,6 +36,32 @@ it('should bind to events and invoke events when emitted', () => {
 
   expect(callbackFnT).toBeCalled();
   expect(callbackFnT).toHaveBeenCalledTimes(2);
+});
+
+it('should invoke wildcard `*` event listener for all events', () => {
+  const callbackFn = jest.fn();
+
+  event.on('*', callbackFn);
+
+  event.emit('t', payload);
+  expect(callbackFn).toHaveBeenCalledWith(payload);
+
+  event.emit('s', payload2);
+  expect(callbackFn).toHaveBeenCalledWith(payload2);
+
+  expect(callbackFn).toBeCalledTimes(2);
+});
+
+it('should not call other functions for wildcard event `*`', () => {
+  const callbackFn = jest.fn();
+  const callbackFnT = jest.fn();
+
+  event.on('*', callbackFn);
+  event.on('t', callbackFnT);
+  event.emit('*', payload);
+
+  expect(callbackFn).toBeCalled();
+  expect(callbackFnT).not.toBeCalled();
 });
 
 it('should invoke event listeners with given arguments', () => {

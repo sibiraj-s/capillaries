@@ -25,7 +25,8 @@ class Capillaries {
   }
 
   emit(type, ...args) {
-    const eventList = this.#events[type] || [];
+    const starEvents = type === '*' ? [] : this.#events['*'] || [];
+    const eventList = (this.#events[type] || []).concat(starEvents);
 
     eventList.forEach((event) => {
       const [listenerFn, ctx] = event;
