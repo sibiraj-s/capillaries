@@ -9,6 +9,7 @@
   "bugs": "https://github.com/sibiraj-s/capillaries/issues",
   "homepage": "https://github.com/sibiraj-s/capillaries#readme",
   "main": "capillaries.js",
+  "sideEffects": false,
   "keywords": [
     "javascript-events",
     "events"
