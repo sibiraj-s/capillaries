@@ -72,7 +72,6 @@ const preparePackageJson = async function () {
 
   packageJson.main = 'capillaries.js';
   packageJson.module = 'capillaries.esm.js';
-  packageJson.browser = 'capillaries.umd.min.js';
   packageJson.types = 'capillaries.d.ts';
 
   delete packageJson.scripts;
