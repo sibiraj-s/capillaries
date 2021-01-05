@@ -14,13 +14,13 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
-## v2.0.6 (2019-12-13)
+## v2.0.6 (2020-12-13)
 
 #### Internal
 
 - update LICENSE ([26f258a](https://github.com/sibiraj-s/capillaries/commit/26f258a))
 
-## v2.0.5 (2019-12-13)
+## v2.0.5 (2020-12-13)
 
 #### Internal
 
