@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.1.2 (2021-01-05)
+
+#### Bug Fixes
+
+- freeze event instance ([2102012](https://github.com/sibiraj-s/capillaries/commit/2102012))
+
 ## v2.1.1 (2021-01-05)
 
 #### Bug Fixes
