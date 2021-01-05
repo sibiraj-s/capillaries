@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v2.1.1 (2021-01-05)
+
+#### Bug Fixes
+
+- prefer arrow functions ([043cc86](https://github.com/sibiraj-s/capillaries/commit/043cc86))
+
 ## v2.1.0 (2021-01-05)
 
 #### Features
