@@ -5,7 +5,7 @@ class Capillaries {
     Object.seal(this);
   }
 
-  on(type, listener, ctx = null) {
+  on = (type, listener, ctx = null) => {
     if (typeof listener !== 'function') {
       throw new TypeError('Event Listener must be a function');
     }
@@ -15,7 +15,7 @@ class Capillaries {
     this.events[type] = event;
   }
 
-  off(type, listener) {
+  off = (type, listener) => {
     if (typeof listener !== 'function') {
       delete this.events[type];
       return;
@@ -24,7 +24,7 @@ class Capillaries {
     this.events[type] = (this.events[type] || []).filter((e) => e[0] !== listener);
   }
 
-  emit(type, ...args) {
+  emit = (type, ...args) => {
     const starEvents = type === '*' ? [] : this.events['*'] || [];
     const eventList = (this.events[type] || []).concat(starEvents);
 
@@ -34,7 +34,7 @@ class Capillaries {
     });
   }
 
-  unbindAll() {
+  unbindAll = () => {
     this.events = {};
   }
 }

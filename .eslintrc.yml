@@ -3,9 +3,14 @@ extends:
   - pegasus/node
 
 plugins:
+  - '@babel'
   - jest
 
 parser: '@babel/eslint-parser'
+
+rules:
+  'no-invalid-this': off
+  '@babel/no-invalid-this': "error"
 
 overrides:
   - files: 'scripts/*'
