@@ -6,7 +6,7 @@ export class Capillaries {
    * @param listener A function to invoke when the event occurs.
    * @param context Context to bind to the event handler
    * 
-   * @returns {Function} A functin to unscribe the listener
+   * @returns {Function} A functin to unsubscribe the listener
    */
   on(type: string, listener: Function, context?: object): () => void
 
@@ -51,7 +51,7 @@ export class Hooks {
   * The result from one tap is passed over to the other in series and
   * will return the response from last tap as result
   * 
-  * @param type A String that specifies the name of the event.
+  * @param name A String that specifies the name of the event.
   * @param payload Optional payload for event handlers
   */
   callWaterFall(name: string, payload?: any): unknown
@@ -62,10 +62,10 @@ export class Hooks {
    * @param name A String that specifies the name of the event.
    * @param payload Optional payload for event handlers
    */
-  callAsync(name: string, payload?: any): Promise<unknown>
+  callAsync(name: string, payload?: any): Promise<void>
 
   /**
-  * Invokes all tapped functions and await them
+  * Invokes all tapped functions and awaits them
   * the result from one tap is passed over to the other in series and
   * will return the response from last tap as result
   * 
@@ -80,4 +80,4 @@ export class Hooks {
   clear(): void
 }
 
-export = Capillaries
+export default Capillaries
