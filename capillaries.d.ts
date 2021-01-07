@@ -1,4 +1,4 @@
-export class Capillaries {
+export class Events {
   /**
    * Create event listener
    *
@@ -80,4 +80,4 @@ export class Hooks {
   clear(): void
 }
 
-export default Capillaries
+export default Events

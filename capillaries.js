@@ -1,4 +1,4 @@
-export class Capillaries {
+export class Events {
   #events = {};
 
   constructor() {
@@ -108,4 +108,4 @@ export class Hooks extends Map {
   }
 }
 
-export default Capillaries;
+export default Events;
