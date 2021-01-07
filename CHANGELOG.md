@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v3.1.1 (2021-01-07)
+
+#### Documentation
+
+- update README ([bde9633](https://github.com/sibiraj-s/capillaries/commit/bde9633))
+
 ## v3.1.0 (2021-01-07)
 
 #### Enhancements
