@@ -1,6 +1,6 @@
 # Capillaries [![Tests](https://github.com/sibiraj-s/capillaries/workflows/Tests/badge.svg)](https://github.com/sibiraj-s/capillaries/actions)
 
-> Javascript Events
+> Javascript Events and Hooks
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ const unsubscribe = event.on('connected', listener);
 unsubscribe();
 
 // remove all listeners for given event
-event.off('connected');
+event.unbindAll('connected');
 
 // unbind all event listeners
 event.unbindAll();
@@ -73,7 +73,7 @@ hooks.callAsyncWaterFall('AsyncHook', payload); // awaits on taps, returns 'Hell
 hooks.clear()
 ```
 
-Hooks are executed in order. The waterfall passes a return value from each function to the next function and returns final retuned data
+Hooks are executed in order. The calling waterfall hook passes a return value from each function to the next function and returns data from the last tap
 
 ### Browser compatibility
 
