@@ -1,4 +1,4 @@
-import Capillaries from './capillaries';
+import Capillaries from '../capillaries';
 
 const event = new Capillaries();
 const payload = 'Test Payload';
@@ -9,7 +9,6 @@ afterAll(() => event.unbindAll());
 it('should initiate correctly', () => {
   expect(event).toBeInstanceOf(Capillaries);
   expect(event.on).toBeInstanceOf(Function);
-  expect(event.off).toBeInstanceOf(Function);
   expect(event.emit).toBeInstanceOf(Function);
   expect(event.unbindAll).toBeInstanceOf(Function);
 });
@@ -82,14 +81,26 @@ it('should throw error when event listerner is not a function', () => {
   expect(() => event.on('q')).toThrow(TypeError);
 });
 
-it('should unbind all events when listerner reference is not passed', () => {
+it('should not throw error when event is unsbscribed already', () => {
+  const callbackFnQ = jest.fn();
+
+  const unsbscribe = event.on('q', callbackFnQ);
+
+  event.unbindAll('q');
+  event.emit('q', payload);
+
+  expect(() => { unsbscribe(); }).not.toThrow(TypeError);
+  expect(callbackFnQ).not.toBeCalled();
+});
+
+it('should unbind all events for a specified type', () => {
   const callbackFnQ = jest.fn();
   const callbackFnQ2 = jest.fn();
 
   event.on('q', callbackFnQ);
   event.on('q', callbackFnQ2);
 
-  event.off('q');
+  event.unbindAll('q');
 
   event.emit('q', payload);
 
@@ -101,32 +112,15 @@ it('should unbind correct events', () => {
   const callbackFnQ = jest.fn();
   const callbackFnR = jest.fn();
 
-  event.on('q', callbackFnQ);
+  const unsubscribe = event.on('q', callbackFnQ);
   event.on('r', callbackFnR);
 
-  event.off('q', callbackFnQ);
+  unsubscribe();
 
   event.emit('q', payload);
   event.emit('r', payload);
 
   expect(callbackFnQ).not.toBeCalled();
-  expect(callbackFnR).toBeCalled();
-});
-
-it('should not unbind events when `off` method is invoked with invalid type', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
-
-  event.on('q', callbackFnQ);
-  event.on('r', callbackFnR);
-
-  event.off('t');
-  event.off('s', callbackFnQ);
-
-  event.emit('q', payload);
-  event.emit('r', payload);
-
-  expect(callbackFnQ).toBeCalled();
   expect(callbackFnR).toBeCalled();
 });
 
@@ -163,7 +157,6 @@ it('should be immutable', () => {
   const callbackFnQ = jest.fn();
 
   expect(() => { event.on = func; }).toThrow(TypeError);
-  expect(() => { event.off = func; }).toThrow(TypeError);
   expect(() => { event.emit = func; }).toThrow(TypeError);
   expect(() => { event.unbindAll = func; }).toThrow(TypeError);
   expect(() => { event.newFunc = func; }).toThrow(TypeError);

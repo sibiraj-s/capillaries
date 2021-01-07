@@ -30,32 +30,31 @@ or use cdn
 //cdn.jsdelivr.net/npm/capillaries@latest/capillaries.umd.js
 ```
 
-### Usage
+### Events
 
 ```js
-import Capillaries from 'capillaries';
+import { Events } from 'capillaries';
 
-const event = new Capillaries();
+const event = new Events();
 
-const listener = function(payload) {
+const listener = function (payload) {
   console.log('Event Received:', payload);
 };
 
-const anotherListener = function(payload) {
+const anotherListener = function (payload) {
   console.log('Event Received:', payload);
 };
 
 // create a event listeners
 event.on('connecting', listener);
-event.on('connected', listener);
-event.on('connecting', anotherListener);
 event.on('connected', anotherListener, this); // optionally bind context to the listener when invoked
 
 // dispatch events
 event.emit('connected', 'paylod');
 
-// remvoe a particular event listener
-event.off('connected', listener);
+// remove a event listener
+const unsubscribe = event.off('connected', listener);
+unsubscribe();
 
 // remove all listeners for an event
 event.off('connected');
@@ -64,18 +63,26 @@ event.off('connected');
 event.unbindAll();
 ```
 
-### API
+### Hooks
 
 ```js
-import Capillaries from 'capillaries';
+import { Hooks } from 'capillaries';
 
-const event = new Capillaries();
+const hooks = new Hooks();
+
+// create a tap
+hook.tap('HookName', () => {
+  return 'Hello World';
+});
+
+// Calling the taps
+hook.call('HookName', payload); //-> returns undefined
+hook.callWaterFall('HookName', payload); //-> returns 'Hello world'
+hook.callAsync('HookName', payload); // awaits on taps, returns undefined
+hook.callAsyncWaterFall('HookName', payload); // awaits on taps, returns 'Hello world'
 ```
 
-- event.on
-- event.off
-- event.emit
-- event.unbindAll
+Hooks are executed in order. The waterfall passes a return value from each function to the next function and returns final retuned data
 
 ### Browser compatibility
 
