@@ -12,7 +12,8 @@
   "sideEffects": false,
   "keywords": [
     "javascript-events",
-    "events"
+    "events",
+    "hooks"
   ],
   "scripts": {
     "build": "gulp build",
