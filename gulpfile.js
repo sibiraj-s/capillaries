@@ -35,7 +35,7 @@ const compile = async function () {
   await bundle.write({
     file: 'dist/capillaries.js',
     format: 'cjs',
-    exports: 'auto',
+    exports: 'named',
     sourcemap: true,
     banner,
   });
@@ -50,6 +50,7 @@ const compile = async function () {
   await bundle.write({
     file: 'dist/capillaries.umd.js',
     format: 'umd',
+    exports: 'named',
     name: 'Capillaries',
     sourcemap: true,
     banner,

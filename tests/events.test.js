@@ -89,7 +89,7 @@ it('should not throw error when event is unsbscribed already', () => {
   event.unbindAll('q');
   event.emit('q', payload);
 
-  expect(() => { unsbscribe(); }).not.toThrow(TypeError);
+  expect(() => { unsbscribe(); }).not.toThrow();
   expect(callbackFnQ).not.toBeCalled();
 });
 

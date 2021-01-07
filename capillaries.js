@@ -1,7 +1,6 @@
-export class Events {
-  #events = {};
-
+export class Events extends Map {
   constructor() {
+    super();
     Object.freeze(this);
   }
 
@@ -10,18 +9,19 @@ export class Events {
       throw new TypeError('Event Listener must be a function');
     }
 
-    const event = this.#events[type] || [];
+    const event = this.get(type) || [];
     event.push([listener, ctx]);
-    this.#events[type] = event;
+    this.set(type, event);
 
     return () => {
-      this.#events[type] = (this.#events[type] || []).filter((e) => e[0] !== listener);
+      const events = this.get(type) || [];
+      this.set(type, events.filter((e) => e[0] !== listener));
     };
   }
 
   emit = (type, ...args) => {
-    const starEvents = type === '*' ? [] : this.#events['*'] || [];
-    const eventList = (this.#events[type] || []).concat(starEvents);
+    const starEvents = type === '*' ? [] : this.get('*') || [];
+    const eventList = (this.get(type) || []).concat(starEvents);
 
     eventList.forEach((event) => {
       const [listenerFn, ctx] = event;
@@ -31,15 +31,20 @@ export class Events {
 
   unbindAll = (type) => {
     if (type) {
-      delete this.#events[type];
+      this.delete(type);
       return;
     }
 
-    this.#events = {};
+    this.clear();
   }
 }
 
 export class Hooks extends Map {
+  constructor() {
+    super();
+    Object.freeze(this);
+  }
+
   tap = (name, cb, ctx = null) => {
     if (typeof cb !== 'function') {
       throw new TypeError('Callback must be a function');
@@ -50,7 +55,7 @@ export class Hooks extends Map {
     this.set(name, hook);
 
     return () => {
-      const hooks = this.get(name);
+      const hooks = this.get(name) || [];
       this.set(name, hooks.filter((e) => e[0] !== cb));
     };
   }

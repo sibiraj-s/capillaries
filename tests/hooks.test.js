@@ -114,6 +114,19 @@ it('should be able to untap a tap', () => {
   expect(value).toBe(undefined);
 });
 
+it('should not throw error if untap called twice', () => {
+  const callbackFnQ = jest.fn().mockReturnValue(2);
+
+  const untap = hooks.tap('q', callbackFnQ);
+  hooks.clear();
+
+  expect(() => { untap(); }).not.toThrow();
+  const value = hooks.call('q', 1);
+
+  expect(callbackFnQ).not.toBeCalled();
+  expect(value).toBe(undefined);
+});
+
 it('should throw error when callback is not a function', () => {
   expect(() => hooks.tap('q')).toThrow(TypeError);
 });

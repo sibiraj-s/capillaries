@@ -16,20 +16,6 @@ Installation can be done via package managers such as [npm] or [yarn]
 % yarn add capillaries
 ```
 
-or use cdn
-
-#### Minified:
-
-```bash
-//cdn.jsdelivr.net/npm/capillaries@latest/capillaries.umd.min.js
-```
-
-#### Pretty Printed:
-
-```bash
-//cdn.jsdelivr.net/npm/capillaries@latest/capillaries.umd.js
-```
-
 ### Events
 
 ```js
@@ -57,6 +43,8 @@ event.off('connected');
 
 // unbind all event listeners
 event.unbindAll();
+// or
+event.clear();
 ```
 
 ### Hooks
@@ -80,18 +68,21 @@ hooks.call('Hook', payload); //-> returns undefined
 hooks.callWaterFall('Hook', payload); //-> returns 'Hello World!'
 hooks.callAsync('AsyncHook', payload); // awaits on taps, returns undefined
 hooks.callAsyncWaterFall('AsyncHook', payload); // awaits on taps, returns 'Hello World!'
+
+// remove all hooks
+hooks.clear()
 ```
 
 Hooks are executed in order. The waterfall passes a return value from each function to the next function and returns final retuned data
 
 ### Browser compatibility
 
-- Internet Explorer 9+
-- Chrome 6+
+- Chrome 38+
 - Edge 12+
-- Firefox 4+
-- Opera 12+
-- Safari 5.1+
+- Firefox 13+
+- Opera 25+
+- Safari 8+
+- Internet Explorer 11
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
