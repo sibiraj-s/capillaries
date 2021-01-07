@@ -14,6 +14,48 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v3.0.0 (2021-01-07)
+
+#### Features
+
+- hooks ([9af54d1](https://github.com/sibiraj-s/capillaries/commit/9af54d1))
+- `event.on` returns `unsubscribe` method ([9af54d1](https://github.com/sibiraj-s/capillaries/commit/9af54d1))
+
+#### Breaking Changes
+
+- removed `event.off` method ([9af54d1](https://github.com/sibiraj-s/capillaries/commit/9af54d1))
+
+**Before**
+
+```js
+const event = new Events()
+
+const handler = () => {}
+
+event.on('a', handler)
+
+// To Unsubscribe
+event.off('a', handler)
+// or
+event.off('a')
+```
+
+**After**
+
+```js
+const event = new Events()
+
+const handler = () => {}
+
+const unsubscribe = event.on('a', handler)
+
+// To Unsubscribe
+unsubscribe()
+// or
+event.unbindAll('a')
+```
+
+
 ## v2.1.2 (2021-01-05)
 
 #### Bug Fixes
