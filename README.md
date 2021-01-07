@@ -41,22 +41,18 @@ const listener = function (payload) {
   console.log('Event Received:', payload);
 };
 
-const anotherListener = function (payload) {
-  console.log('Event Received:', payload);
-};
-
 // create a event listeners
 event.on('connecting', listener);
-event.on('connected', anotherListener, this); // optionally bind context to the listener when invoked
+event.on('connected', listener, this); // optionally bind context to the listener when invoked
 
 // dispatch events
 event.emit('connected', 'paylod');
 
 // remove a event listener
-const unsubscribe = event.off('connected', listener);
+const unsubscribe = event.on('connected', listener);
 unsubscribe();
 
-// remove all listeners for an event
+// remove all listeners for given event
 event.off('connected');
 
 // unbind all event listeners
@@ -71,15 +67,19 @@ import { Hooks } from 'capillaries';
 const hooks = new Hooks();
 
 // create a tap
-hooks.tap('HookName', () => {
-  return 'Hello World';
+hooks.tap('Hook', () => {
+  return 'Hello World!';
 });
 
-// Calling the taps
-hooks.call('HookName', payload); //-> returns undefined
-hooks.callWaterFall('HookName', payload); //-> returns 'Hello world'
-hooks.callAsync('HookName', payload); // awaits on taps, returns undefined
-hooks.callAsyncWaterFall('HookName', payload); // awaits on taps, returns 'Hello world'
+hooks.tap('AsyncHook', async () => {
+  return 'Hello World!';
+});
+
+// Call the taps
+hooks.call('Hook', payload); //-> returns undefined
+hooks.callWaterFall('Hook', payload); //-> returns 'Hello World!'
+hooks.callAsync('AsyncHook', payload); // awaits on taps, returns undefined
+hooks.callAsyncWaterFall('AsyncHook', payload); // awaits on taps, returns 'Hello World!'
 ```
 
 Hooks are executed in order. The waterfall passes a return value from each function to the next function and returns final retuned data
