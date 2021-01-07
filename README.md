@@ -71,15 +71,15 @@ import { Hooks } from 'capillaries';
 const hooks = new Hooks();
 
 // create a tap
-hook.tap('HookName', () => {
+hooks.tap('HookName', () => {
   return 'Hello World';
 });
 
 // Calling the taps
-hook.call('HookName', payload); //-> returns undefined
-hook.callWaterFall('HookName', payload); //-> returns 'Hello world'
-hook.callAsync('HookName', payload); // awaits on taps, returns undefined
-hook.callAsyncWaterFall('HookName', payload); // awaits on taps, returns 'Hello world'
+hooks.call('HookName', payload); //-> returns undefined
+hooks.callWaterFall('HookName', payload); //-> returns 'Hello world'
+hooks.callAsync('HookName', payload); // awaits on taps, returns undefined
+hooks.callAsyncWaterFall('HookName', payload); // awaits on taps, returns 'Hello world'
 ```
 
 Hooks are executed in order. The waterfall passes a return value from each function to the next function and returns final retuned data
