@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v3.1.0 (2021-01-07)
+
+#### Enhancements
+
+- event class extends `Map` ([6944261](https://github.com/sibiraj-s/capillaries/commit/6944261))
+
 ## v3.0.2 (2021-01-07)
 
 #### Documentation
