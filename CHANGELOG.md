@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v3.0.1 (2021-01-07)
+
+#### Bug Fixes
+
+- update `Event` class export ([02967b0](https://github.com/sibiraj-s/capillaries/commit/02967b0))
+
 ## v3.0.0 (2021-01-07)
 
 #### Features
