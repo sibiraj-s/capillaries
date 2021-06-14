@@ -4,7 +4,7 @@ const event = new Capillaries();
 const payload = 'Test Payload';
 const payload2 = 'Test Payload 2';
 
-afterAll(() => event.unbindAll());
+afterEach(() => event.unbindAll());
 
 it('should initiate correctly', () => {
   expect(event).toBeInstanceOf(Capillaries);

@@ -2,7 +2,7 @@ import { Hooks } from '../capillaries';
 
 const hooks = new Hooks();
 
-afterAll(() => hooks.clear());
+afterEach(() => hooks.clear());
 
 it('should initiate correctly', () => {
   expect(hooks).toBeInstanceOf(Hooks);

@@ -6,7 +6,7 @@ export class Events {
    * @param listener A function to invoke when the event occurs.
    * @param context Context to bind to the event handler
    *
-   * @returns {Function} A functin to unsubscribe the listener
+   * @returns {Function} A function to unsubscribe the listener
    */
   on(type: string, listener: Function, context?: object): () => void
 
@@ -23,6 +23,34 @@ export class Events {
    * @param type A String that specifies the name of the event. If not specified it will clear all events
    */
   unbindAll(type?: string): void
+}
+
+export class AsyncEvents {
+   /**
+   * Create event listener
+   *
+   * @param type A String that specifies the name of the event.
+   * @param handler A function to invoke when the event is invoked.
+   *
+   * @returns {Function} A functionn to unsubscribe the listener
+   */
+  on(name: string, handler: Function): () => void
+
+  /**
+   * Invokes all tapped functions synchronously
+   *
+   * @param name Name of the hook
+   * @param payload Payload for the tap
+   *
+   */
+  call(name: string, payload?: any): Promise<void>
+
+  /**
+   * Unbind all events listeners
+   *
+   * @param type A String that specifies the name of the event. If not specified it will clear all events
+   */
+   unbindAll(type?: string): void
 }
 
 export class Hooks {

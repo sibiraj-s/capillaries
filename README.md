@@ -43,8 +43,33 @@ event.unbindAll('connected');
 
 // unbind all event listeners
 event.unbindAll();
-// or
-event.clear();
+```
+
+### AsyncEvents
+
+```js
+import { AsyncEvents } from 'capillaries';
+
+const event = new AsyncEvents();
+
+const handler = async function (payload) {
+  console.log('Event Received:', payload);
+};
+
+// create a event handler
+// only one event can be attached, attaching more than one event will throw error
+event.on('connected', handler);
+
+// call the event
+// can be awaited
+event.call('connected', 'paylod');
+
+// remove a event listener
+const unsubscribe = event.on('connected', handler);
+unsubscribe();
+
+// unbind/remove all events
+event.unbindAll();
 ```
 
 ### Hooks
