@@ -1,6 +1,7 @@
-class Hooks extends Map {
+class Hooks {
+  #hooks = new Map()
+
   constructor() {
-    super();
     Object.freeze(this);
   }
 
@@ -9,18 +10,18 @@ class Hooks extends Map {
       throw new TypeError('Callback must be a function');
     }
 
-    const hook = this.get(name) || [];
+    const hook = this.#hooks.get(name) || [];
     hook.push([cb, ctx]);
-    this.set(name, hook);
+    this.#hooks.set(name, hook);
 
     return () => {
-      const hooks = this.get(name) || [];
-      this.set(name, hooks.filter((e) => e[0] !== cb));
+      const hooks = this.#hooks.get(name) || [];
+      this.#hooks.set(name, hooks.filter((e) => e[0] !== cb));
     };
   }
 
   callAsync = async (name, ...args) => {
-    const hooks = this.get(name);
+    const hooks = this.#hooks.get(name);
     if (!hooks) {
       return;
     }
@@ -33,7 +34,7 @@ class Hooks extends Map {
   callAsyncWaterFall = async (name, arg) => {
     let data = arg;
 
-    const hooks = this.get(name);
+    const hooks = this.#hooks.get(name);
     if (!hooks) {
       return data;
     }
@@ -46,7 +47,7 @@ class Hooks extends Map {
   }
 
   call = (name, arg) => {
-    const hooks = this.get(name);
+    const hooks = this.#hooks.get(name);
     if (!hooks) {
       return;
     }
@@ -59,7 +60,7 @@ class Hooks extends Map {
   callWaterFall = (name, arg) => {
     let data = arg;
 
-    const hooks = this.get(name);
+    const hooks = this.#hooks.get(name);
     if (!hooks) {
       return data;
     }
@@ -69,6 +70,10 @@ class Hooks extends Map {
     }
 
     return data;
+  }
+
+  clear = () => {
+    this.#hooks.clear();
   }
 }
 

@@ -5,7 +5,6 @@ const hooks = new Hooks();
 afterAll(() => hooks.clear());
 
 it('should initiate correctly', () => {
-  expect(hooks).toBeInstanceOf(Map);
   expect(hooks).toBeInstanceOf(Hooks);
   expect(hooks.tap).toBeInstanceOf(Function);
   expect(hooks.call).toBeInstanceOf(Function);

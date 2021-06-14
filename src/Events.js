@@ -1,6 +1,7 @@
-class Events extends Map {
+class Events {
+  #events = new Map()
+
   constructor() {
-    super();
     Object.freeze(this);
   }
 
@@ -9,19 +10,19 @@ class Events extends Map {
       throw new TypeError('Event Listener must be a function');
     }
 
-    const event = this.get(type) || [];
+    const event = this.#events.get(type) || [];
     event.push([listener, ctx]);
-    this.set(type, event);
+    this.#events.set(type, event);
 
     return () => {
-      const events = this.get(type) || [];
-      this.set(type, events.filter((e) => e[0] !== listener));
+      const events = this.#events.get(type) || [];
+      this.#events.set(type, events.filter((e) => e[0] !== listener));
     };
   }
 
   emit = (type, ...args) => {
-    const starEvents = type === '*' ? [] : this.get('*') || [];
-    const eventList = (this.get(type) || []).concat(starEvents);
+    const starEvents = type === '*' ? [] : this.#events.get('*') || [];
+    const eventList = (this.#events.get(type) || []).concat(starEvents);
 
     eventList.forEach((event) => {
       const [listenerFn, ctx] = event;
@@ -31,11 +32,11 @@ class Events extends Map {
 
   unbindAll = (type) => {
     if (type) {
-      this.delete(type);
+      this.#events.delete(type);
       return;
     }
 
-    this.clear();
+    this.#events.clear();
   }
 }
 

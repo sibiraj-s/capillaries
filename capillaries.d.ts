@@ -5,7 +5,7 @@ export class Events {
    * @param type A String that specifies the name of the event.
    * @param listener A function to invoke when the event occurs.
    * @param context Context to bind to the event handler
-   * 
+   *
    * @returns {Function} A functin to unsubscribe the listener
    */
   on(type: string, listener: Function, context?: object): () => void
@@ -32,7 +32,7 @@ export class Hooks {
    * @param type Name of the hook
    * @param cb A callback function to invoke when the tap is called
    * @param context Context to bind to the callback function
-   * 
+   *
    * @returns {Function} A function to remove the tap
    */
   tap(name: string, cb: Function, context?: object): () => void
@@ -42,7 +42,7 @@ export class Hooks {
    *
    * @param name Name of the hook
    * @param payload Payload for the tap
-   * 
+   *
    */
   call(name: string, payload?: any): void
 
@@ -50,7 +50,7 @@ export class Hooks {
   * Invokes all tapped functions synchronously
   * The result from one tap is passed over to the other in series and
   * will return the response from last tap as result
-  * 
+  *
   * @param name A String that specifies the name of the event.
   * @param payload Optional payload for event handlers
   */
@@ -68,7 +68,7 @@ export class Hooks {
   * Invokes all tapped functions and awaits them
   * the result from one tap is passed over to the other in series and
   * will return the response from last tap as result
-  * 
+  *
   * @param name Name of the hook to invoke.
   * @param payload Optional payload for hooks
   */
