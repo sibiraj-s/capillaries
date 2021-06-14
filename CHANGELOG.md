@@ -14,6 +14,16 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v3.2.0 (2021-06-14)
+
+#### Features
+
+- AsyncEvents ([cb03774](https://github.com/sibiraj-s/capillaries/commit/cb03774))
+
+#### Bug Fixes
+
+- do not expose `Map` methods ([54d4c1e](https://github.com/sibiraj-s/capillaries/commit/54d4c1e))
+
 ## v3.1.1 (2021-01-07)
 
 #### Documentation
