@@ -70,7 +70,7 @@ unsubscribe();
 event.unbindAll();
 ```
 
-Only one event handler can be attached to per event. Attaching more than one event will throw error.
+Only one event handler can be attached per event. Attaching more than one event will throw an error.
 
 ### Hooks
 
