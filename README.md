@@ -57,12 +57,10 @@ const handler = async function (payload) {
 };
 
 // create a event handler
-// only one event can be attached, attaching more than one event will throw error
 event.on('connected', handler);
 
 // call the event
-// can be awaited
-event.call('connected', 'paylod');
+await event.call('connected', 'paylod');
 
 // remove a event listener
 const unsubscribe = event.on('connected', handler);
@@ -71,6 +69,8 @@ unsubscribe();
 // unbind/remove all events
 event.unbindAll();
 ```
+
+Only one event handler can be attached to per event. Attaching more than one event will throw error.
 
 ### Hooks
 
