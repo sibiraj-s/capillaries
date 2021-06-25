@@ -141,3 +141,24 @@ it('should go nothing when taps does not exist', async () => {
   expect(value).toBe(undefined);
   expect(value2).toBe(undefined);
 });
+
+it('should clear the hooks correctly', () => {
+  const callbackFnQ = jest.fn();
+  const callbackFnR = jest.fn();
+  const callbackFnT = jest.fn();
+
+  hooks.tap('q', callbackFnQ);
+  hooks.tap('r', callbackFnR);
+
+  hooks.clear('q');
+  hooks.call('q', 1);
+  hooks.call('r', 1);
+
+  expect(callbackFnQ).not.toBeCalled();
+  expect(callbackFnR).toBeCalled();
+
+  hooks.tap('t', callbackFnT);
+  hooks.clear();
+  hooks.call('t', 1);
+  expect(callbackFnT).not.toBeCalled();
+});

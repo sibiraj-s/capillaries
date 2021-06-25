@@ -72,7 +72,12 @@ class Hooks {
     return data;
   }
 
-  clear = () => {
+  clear = (name) => {
+    if (name) {
+      this.#hooks.delete(name);
+      return;
+    }
+
     this.#hooks.clear();
   }
 }
