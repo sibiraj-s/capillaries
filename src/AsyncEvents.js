@@ -3,7 +3,7 @@ class AsyncEvents {
 
   on = (name, handler) => {
     if (this.#events.has(name)) {
-      throw new Error(`Listener already exists for: ${name}`);
+      throw new Error(`Handler already exists for: ${name}`);
     }
 
     if (typeof handler !== 'function') {
