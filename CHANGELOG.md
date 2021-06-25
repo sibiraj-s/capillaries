@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 
 #### Breaking Changes
 
-- wildcard events listeners will now event type as first argument
+- wildcard events listeners will now receive event type as first argument ([ab8df44](https://github.com/sibiraj-s/capillaries/commit/ab8df44))
 
 Before
 
