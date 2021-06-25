@@ -33,7 +33,7 @@ const compile = async function () {
   });
 
   await bundle.write({
-    file: 'dist/capillaries.js',
+    file: 'dist/capillaries.cjs',
     format: 'cjs',
     exports: 'named',
     sourcemap: true,
@@ -41,7 +41,7 @@ const compile = async function () {
   });
 
   await bundle.write({
-    file: 'dist/capillaries.esm.js',
+    file: 'dist/capillaries.js',
     format: 'es',
     sourcemap: true,
     banner,
@@ -71,8 +71,8 @@ const preparePackageJson = async function () {
 
   const packageJson = JSON.parse(jsonStr);
 
-  packageJson.main = 'capillaries.js';
-  packageJson.module = 'capillaries.esm.js';
+  packageJson.module = 'capillaries.js';
+  packageJson.main = 'capillaries.cjs';
   packageJson.types = 'capillaries.d.ts';
 
   delete packageJson.scripts;
