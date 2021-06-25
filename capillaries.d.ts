@@ -1,4 +1,4 @@
-export class Events {
+export class Events<E extends Record<string | symbol | '*', unknown>> {
   /**
    * Create event listener
    *
@@ -8,25 +8,36 @@ export class Events {
    *
    * @returns {Function} A function to unsubscribe the listener
    */
-  on(type: string, listener: Function, context?: object): () => void
+  on<K extends keyof E>(type: K, listener: (...payload: E[K][]) => void, context?: unknown): () => void;
+
+  /**
+   * Create a wildcard listener to listen to all events
+   *
+   * @param type A String that specifies the name of the event.
+   * @param listener A function to invoke when the event occurs.
+   * @param context Context to bind to the event handler
+   *
+   * @returns {Function} A function to unsubscribe the listener
+   */
+  on<K extends keyof E>(type: '*', listener: (type: K, ...payload: E[K][]) => void, context?: unknown): () => void;
 
   /**
    * Emit Events
    * @param type A String that specifies the name of the event.
    * @param payload Optional payload for event handlers
    */
-  emit(type: string, payload?: any): void
+  emit<K extends keyof E>(type: K, ...payload: E[K][]): void;
 
   /**
    * Unbind all events listeners
    *
    * @param type A String that specifies the name of the event. If not specified it will clear all events
    */
-  unbindAll(type?: string): void
+  unbindAll<K extends keyof E>(type?: K): void;
 }
 
-export class AsyncEvents {
-   /**
+export class AsyncEvents<E extends Record<string, unknown>> {
+  /**
    * Create event listener
    *
    * @param type A String that specifies the name of the event.
@@ -34,7 +45,7 @@ export class AsyncEvents {
    *
    * @returns {Function} A functionn to unsubscribe the listener
    */
-  on(name: string, handler: Function): () => void
+  on<K extends keyof E>(name: K, handler: (...payload: E[K][]) => void): () => void;
 
   /**
    * Invokes all tapped functions synchronously
@@ -43,17 +54,17 @@ export class AsyncEvents {
    * @param payload Payload for the tap
    *
    */
-  call(name: string, payload?: any): Promise<void>
+  call<K extends keyof E>(name: K, ...payload: E[K][]): Promise<void>;
 
   /**
    * Unbind all events listeners
    *
    * @param type A String that specifies the name of the event. If not specified it will clear all events
    */
-   unbindAll(type?: string): void
+  unbindAll<K extends keyof E>(type?: K): void;
 }
 
-export class Hooks {
+export class Hooks<H extends Record<string, unknown>> {
   /**
    * Create a tap
    *
@@ -63,26 +74,25 @@ export class Hooks {
    *
    * @returns {Function} A function to remove the tap
    */
-  tap(name: string, cb: Function, context?: object): () => void
+  tap<K extends keyof H>(name: K, cb: (payload: H[K]) => void, context?: unknown): () => void;
 
   /**
    * Invokes all tapped functions synchronously
    *
    * @param name Name of the hook
    * @param payload Payload for the tap
-   *
    */
-  call(name: string, payload?: any): void
+  call<K extends keyof H>(name: K, payload?: H[K]): void;
 
   /**
-  * Invokes all tapped functions synchronously
-  * The result from one tap is passed over to the other in series and
-  * will return the response from last tap as result
-  *
-  * @param name A String that specifies the name of the event.
-  * @param payload Optional payload for event handlers
-  */
-  callWaterFall(name: string, payload?: any): unknown
+   * Invokes all tapped functions synchronously
+   * The result from one tap is passed over to the other in series and
+   * will return the response from last tap as result
+   *
+   * @param name A String that specifies the name of the event.
+   * @param payload Optional payload for event handlers
+   */
+  callWaterFall<K extends keyof H>(name: K, payload?: H[K]): unknown;
 
   /**
    * Invokes and awaits on all tapped functions
@@ -90,22 +100,23 @@ export class Hooks {
    * @param name A String that specifies the name of the event.
    * @param payload Optional payload for event handlers
    */
-  callAsync(name: string, payload?: any): Promise<void>
+  callAsync<K extends keyof H>(name: K, payload?: H[K]): Promise<void>;
 
   /**
-  * Invokes all tapped functions and awaits them
-  * the result from one tap is passed over to the other in series and
-  * will return the response from last tap as result
-  *
-  * @param name Name of the hook to invoke.
-  * @param payload Optional payload for hooks
-  */
-  callAsyncWaterFall(type: string, payload?: any): Promise<unknown>
+   * Invokes all tapped functions and awaits them
+   * the result from one tap is passed over to the other in series and
+   * will return the response from last tap as result
+   *
+   * @param name Name of the hook to invoke.
+   * @param payload Optional payload for hooks
+   */
+  callAsyncWaterFall<K extends keyof H>(name: K, payload?: H[K]): Promise<unknown>;
 
   /**
    * Remove all hooks
+   * @param name Name of the hook to remove.
    */
-  clear(): void
+  clear<K extends keyof H>(name?: K): void;
 }
 
-export default Events
+export default Events;
