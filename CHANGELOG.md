@@ -14,6 +14,24 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v4.0.0 (2021-06-25)
+
+#### Breaking Changes
+
+- wildcard events listeners will now event type as first argument
+
+Before
+
+```js
+event.on("*", (payload) => {});
+```
+
+Now
+
+```js
+event.on("*", (type, payload) => {});
+```
+
 ## v3.2.0 (2021-06-14)
 
 #### Features
@@ -62,33 +80,32 @@ All notable changes to this project will be documented in this file.
 **Before**
 
 ```js
-const event = new Events()
+const event = new Events();
 
-const handler = () => {}
+const handler = () => {};
 
-event.on('a', handler)
+event.on("a", handler);
 
 // To Unsubscribe
-event.off('a', handler)
+event.off("a", handler);
 // or
-event.off('a')
+event.off("a");
 ```
 
 **After**
 
 ```js
-const event = new Events()
+const event = new Events();
 
-const handler = () => {}
+const handler = () => {};
 
-const unsubscribe = event.on('a', handler)
+const unsubscribe = event.on("a", handler);
 
 // To Unsubscribe
-unsubscribe()
+unsubscribe();
 // or
-event.unbindAll('a')
+event.unbindAll("a");
 ```
-
 
 ## v2.1.2 (2021-01-05)
 
