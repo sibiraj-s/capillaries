@@ -43,10 +43,10 @@ it('should invoke wildcard `*` event listener for all events', () => {
   event.on('*', callbackFn);
 
   event.emit('t', payload);
-  expect(callbackFn).toHaveBeenCalledWith(payload);
+  expect(callbackFn).toHaveBeenCalledWith('t', payload);
 
   event.emit('s', payload2);
-  expect(callbackFn).toHaveBeenCalledWith(payload2);
+  expect(callbackFn).toHaveBeenCalledWith('s', payload2);
 
   expect(callbackFn).toBeCalledTimes(2);
 });

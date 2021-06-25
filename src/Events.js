@@ -21,12 +21,18 @@ class Events {
   }
 
   emit = (type, ...args) => {
-    const starEvents = type === '*' ? [] : this.#events.get('*') || [];
-    const eventList = (this.#events.get(type) || []).concat(starEvents);
+    const events = this.#events.get(type) || [];
 
-    eventList.forEach((event) => {
+    events.forEach((event) => {
       const [listenerFn, ctx] = event;
       listenerFn.apply(ctx, args);
+    });
+
+    const wildcardEvents = type === '*' ? [] : this.#events.get('*') || [];
+
+    wildcardEvents.forEach((event) => {
+      const [listenerFn, ctx] = event;
+      listenerFn.apply(ctx, [type, ...args]);
     });
   }
 

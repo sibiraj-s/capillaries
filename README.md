@@ -31,6 +31,9 @@ const listener = function (payload) {
 event.on('connecting', listener);
 event.on('connected', listener, this); // optionally bind context to the listener when invoked
 
+// listen to all events
+event.on('*', (type, payload) => {});
+
 // dispatch events
 event.emit('connected', 'paylod');
 
