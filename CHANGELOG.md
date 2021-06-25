@@ -14,6 +14,13 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v4.1.0 (2021-06-25)
+
+#### Features
+
+- option to clear hooks with hook-name ([2891432](https://github.com/sibiraj-s/capillaries/commit/2891432))
+- improved typings ([a85d082](https://github.com/sibiraj-s/capillaries/commit/a85d082))
+
 ## v4.0.0 (2021-06-25)
 
 #### Breaking Changes
