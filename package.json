@@ -19,7 +19,7 @@
     "build": "gulp build",
     "lint": "eslint . --ignore-path .gitignore",
     "test": "NODE_ENV=test jest --verbose",
-    "prepare": "husky install"
+    "prepare": "is-ci || husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -39,6 +39,7 @@
     "gulp-plugin-terser": "^2.0.0",
     "gulp-sourcemaps": "^3.0.0",
     "husky": "^6.0.0",
+    "is-ci": "^3.0.0",
     "jest": "^27.0.5",
     "lint-staged": "^11.0.0",
     "rollup": "^2.52.2",
