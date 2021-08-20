@@ -78,6 +78,7 @@ const preparePackageJson = async function () {
   delete packageJson.scripts;
   delete packageJson.devDependencies;
   delete packageJson.private;
+  delete packageJson.engines;
 
   await fs.writeFile(targetPkgPath, JSON.stringify(packageJson, null, 2));
 };

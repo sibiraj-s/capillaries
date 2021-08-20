@@ -10,6 +10,10 @@
   "homepage": "https://github.com/sibiraj-s/capillaries#readme",
   "main": "capillaries.js",
   "sideEffects": false,
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=7.20.0"
+  },
   "keywords": [
     "javascript-events",
     "events",
