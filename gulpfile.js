@@ -5,7 +5,6 @@ const gulp = require('gulp');
 const rollup = require('rollup');
 const { babel } = require('@rollup/plugin-babel');
 const terser = require('gulp-plugin-terser');
-const sourcemap = require('gulp-sourcemaps');
 
 const pkg = require('./package.json');
 
@@ -58,11 +57,9 @@ const compile = async function () {
 };
 
 const minify = function () {
-  return gulp.src('dist/*.js')
-    .pipe(sourcemap.init())
+  return gulp.src('dist/*.js', { sourcemaps: true })
     .pipe(terser())
-    .pipe(sourcemap.write('.'))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist', { sourcemaps: '.' }));
 };
 
 const preparePackageJson = async function () {
