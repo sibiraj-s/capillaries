@@ -54,6 +54,8 @@ const compile = async function () {
     sourcemap: true,
     banner,
   });
+
+  await bundle.close();
 };
 
 const minify = function () {
