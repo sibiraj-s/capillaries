@@ -1,5 +1,5 @@
 class Events {
-  #events = new Map()
+  #events = new Map();
 
   constructor() {
     Object.freeze(this);
@@ -18,7 +18,7 @@ class Events {
       const events = this.#events.get(type) || [];
       this.#events.set(type, events.filter((e) => e[0] !== listener));
     };
-  }
+  };
 
   emit = (type, ...args) => {
     const events = this.#events.get(type) || [];
@@ -34,7 +34,7 @@ class Events {
       const [listenerFn, ctx] = event;
       listenerFn.apply(ctx, [type, ...args]);
     });
-  }
+  };
 
   unbindAll = (type) => {
     if (type) {
@@ -43,7 +43,7 @@ class Events {
     }
 
     this.#events.clear();
-  }
+  };
 }
 
 export default Events;

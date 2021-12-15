@@ -1,5 +1,5 @@
 class AsyncEvents {
-  #events = new Map()
+  #events = new Map();
 
   on = (name, handler) => {
     if (this.#events.has(name)) {
@@ -13,7 +13,7 @@ class AsyncEvents {
     this.#events.set(name, handler);
 
     return () => this.#events.delete(name);
-  }
+  };
 
   call = (name, payload) => {
     const handler = this.#events.get(name);
@@ -23,11 +23,11 @@ class AsyncEvents {
     }
 
     return handler(payload);
-  }
+  };
 
   unbindAll = () => {
     this.#events.clear();
-  }
+  };
 }
 
 export default AsyncEvents;

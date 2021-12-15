@@ -1,5 +1,5 @@
 class Hooks {
-  #hooks = new Map()
+  #hooks = new Map();
 
   constructor() {
     Object.freeze(this);
@@ -18,7 +18,7 @@ class Hooks {
       const hooks = this.#hooks.get(name) || [];
       this.#hooks.set(name, hooks.filter((e) => e[0] !== cb));
     };
-  }
+  };
 
   callAsync = async (name, ...args) => {
     const hooks = this.#hooks.get(name);
@@ -29,7 +29,7 @@ class Hooks {
     for (const [hook, ctx] of hooks) {
       await hook.apply(ctx, args);
     }
-  }
+  };
 
   callAsyncWaterFall = async (name, arg) => {
     let data = arg;
@@ -44,7 +44,7 @@ class Hooks {
     }
 
     return data;
-  }
+  };
 
   call = (name, arg) => {
     const hooks = this.#hooks.get(name);
@@ -55,7 +55,7 @@ class Hooks {
     for (const [hook, ctx] of hooks) {
       hook.call(arg, ctx);
     }
-  }
+  };
 
   callWaterFall = (name, arg) => {
     let data = arg;
@@ -70,7 +70,7 @@ class Hooks {
     }
 
     return data;
-  }
+  };
 
   clear = (name) => {
     if (name) {
@@ -79,7 +79,7 @@ class Hooks {
     }
 
     this.#hooks.clear();
-  }
+  };
 }
 
 export default Hooks;
