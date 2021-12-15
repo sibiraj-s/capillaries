@@ -16,10 +16,5 @@ rules:
     - error
     - 2
 
-overrides:
-  - files: 'scripts/*'
-    rules:
-      no-console: off
-
 env:
   jest/globals: true
