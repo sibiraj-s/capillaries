@@ -36,7 +36,7 @@
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.4.5",
     "eslint": "^8.4.1",
-    "eslint-config-pegasus": "^3.1.0",
+    "eslint-config-pegasus": "^3.1.1",
     "eslint-plugin-jest": "^25.3.0",
     "gulp": "^4.0.2",
     "gulp-plugin-terser": "^2.0.0",
