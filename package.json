@@ -23,7 +23,8 @@
     "build": "gulp build",
     "lint": "eslint . --ignore-path .gitignore",
     "test": "NODE_ENV=test jest --verbose",
-    "prepare": "is-ci || husky install"
+    "prepare": "is-ci || husky install",
+    "prepublishOnly": "is-ci || (npm run build && publint dist/)"
   },
   "devDependencies": {
     "@babel/core": "^7.22.6",
@@ -44,6 +45,7 @@
     "is-ci": "^3.0.1",
     "jest": "^29.5.0",
     "lint-staged": "^13.2.3",
+    "publint": "^0.1.15",
     "rollup": "^3.26.0",
     "terser": "^5.18.2"
   }
