@@ -73,6 +73,13 @@ const preparePackageJson = async function () {
   packageJson.module = 'capillaries.js';
   packageJson.main = 'capillaries.cjs';
   packageJson.types = 'capillaries.d.ts';
+  packageJson.exports = {
+    '.': {
+      types: './capillaries.d.ts',
+      require: './capillaries.cjs',
+      import: './capillaries.js',
+    },
+  };
 
   delete packageJson.scripts;
   delete packageJson.devDependencies;
