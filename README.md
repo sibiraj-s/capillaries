@@ -98,7 +98,7 @@ hooks.callAsync('AsyncHook', payload); // awaits on taps, returns undefined
 hooks.callAsyncWaterFall('AsyncHook', payload); // awaits on taps, returns 'Hello World!'
 
 // remove all hooks
-hooks.clear()
+hooks.clear();
 ```
 
 Hooks are executed in order. The calling waterfall hook passes a return value from each function to the next function and returns data from the last tap
@@ -114,4 +114,3 @@ Hooks are executed in order. The calling waterfall hook passes a return value fr
 
 [npm]: https://www.npmjs.com/
 [yarn]: https://yarnpkg.com/lang/en/
-[umd]: https://github.com/umdjs/umd

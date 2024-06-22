@@ -1,16 +1,14 @@
 extends:
   - pegasus
+  - pegasus/typescript-recommended
   - pegasus/node
 
-plugins:
-  - '@babel'
-
-parser: '@babel/eslint-parser'
+parserOptions:
+  project: true
 
 rules:
   no-invalid-this: off
   no-await-in-loop: off
-  '@babel/no-invalid-this': "error"
   max-classes-per-file:
     - error
     - 2

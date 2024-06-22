@@ -8,7 +8,7 @@
   "repository": "https://github.com/sibiraj-s/capillaries.git",
   "bugs": "https://github.com/sibiraj-s/capillaries/issues",
   "homepage": "https://github.com/sibiraj-s/capillaries#readme",
-  "main": "capillaries.js",
+  "main": "capillaries.ts",
   "sideEffects": false,
   "type": "module",
   "engines": {
@@ -23,18 +23,13 @@
   "scripts": {
     "build": "gulp build",
     "lint": "eslint . --ignore-path .gitignore",
-    "test": "vitest",
+    "test": "vitest --reporter=verbose",
     "prepare": "is-ci || husky",
     "prepublishOnly": "is-ci || (npm run build && publint dist/)"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.7",
-    "@babel/eslint-parser": "^7.24.7",
-    "@babel/eslint-plugin": "^7.24.7",
-    "@babel/preset-env": "^7.24.7",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
-    "@rollup/plugin-babel": "^6.0.4",
     "eslint": "^8.57.0",
     "eslint-config-pegasus": "^5.0.0",
     "gulp": "^5.0.0",
@@ -42,9 +37,11 @@
     "husky": "^9.0.11",
     "is-ci": "^3.0.1",
     "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
     "publint": "^0.2.8",
-    "rollup": "^4.18.0",
     "terser": "^5.31.1",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.2",
     "vitest": "^1.6.0"
   }
 }

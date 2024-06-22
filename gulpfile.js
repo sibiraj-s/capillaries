@@ -2,11 +2,11 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 import gulp from 'gulp';
-import { rollup } from 'rollup';
-import { babel } from '@rollup/plugin-babel';
+import tsup from 'tsup';
 import terser from 'gulp-plugin-terser';
 
-const pkg = await fs.readFile('./package.json');
+const pkgString = await fs.readFile('./package.json', 'utf-8');
+const pkg = JSON.parse(pkgString);
 
 const outDir = path.resolve(import.meta.dirname, 'dist');
 
@@ -24,42 +24,26 @@ const cleanOutDir = async function () {
 };
 
 const compile = async function () {
-  const bundle = await rollup({
-    input: './capillaries.js',
-    plugins: [
-      babel({ babelHelpers: 'bundled' }),
-    ],
-  });
-
-  await bundle.write({
-    file: 'dist/capillaries.cjs',
-    format: 'cjs',
-    exports: 'named',
+  await tsup.build({
+    entry: ['./capillaries.ts'],
+    format: ['esm', 'cjs'],
+    outDir: 'dist',
+    clean: true,
+    splitting: false,
     sourcemap: true,
-    banner,
+    dts: true,
+    minify: false,
+    esbuildOptions(options) {
+      options.banner = {
+        js: banner,
+      };
+    },
   });
-
-  await bundle.write({
-    file: 'dist/capillaries.js',
-    format: 'es',
-    sourcemap: true,
-    banner,
-  });
-
-  await bundle.write({
-    file: 'dist/capillaries.umd.js',
-    format: 'umd',
-    exports: 'named',
-    name: 'Capillaries',
-    sourcemap: true,
-    banner,
-  });
-
-  await bundle.close();
 };
 
 const minify = function () {
-  return gulp.src('dist/*.js', { sourcemaps: true })
+  return gulp
+    .src('dist/*.js', { sourcemaps: true })
     .pipe(terser())
     .pipe(gulp.dest('dist', { sourcemaps: '.' }));
 };
@@ -75,9 +59,14 @@ const preparePackageJson = async function () {
   packageJson.types = 'capillaries.d.ts';
   packageJson.exports = {
     '.': {
-      types: './capillaries.d.ts',
-      require: './capillaries.cjs',
-      import: './capillaries.js',
+      require: {
+        types: './capillaries.d.cts',
+        default: './capillaries.cjs',
+      },
+      import: {
+        types: './capillaries.d.ts',
+        default: './capillaries.js',
+      },
     },
   };
 
@@ -90,13 +79,7 @@ const preparePackageJson = async function () {
 };
 
 const copyFiles = function () {
-  return gulp.src([
-    'README.md',
-    'CHANGELOG.md',
-    'LICENSE',
-    'capillaries.d.ts',
-    'package.json',
-  ]).pipe(gulp.dest(outDir));
+  return gulp.src(['README.md', 'CHANGELOG.md', 'LICENSE', 'package.json']).pipe(gulp.dest(outDir));
 };
 
 export const build = gulp.series(cleanOutDir, compile, minify, copyFiles, preparePackageJson);

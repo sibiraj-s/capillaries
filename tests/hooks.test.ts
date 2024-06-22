@@ -19,9 +19,9 @@ it('should initiate correctly', () => {
 it('should invoke callAsyncWaterFall hook correctly', async () => {
   const callbackFnQ = vi.fn((x) => x + 2);
 
-  hooks.tap('q', (x) => {
+  hooks.tap('q', (x: any) => {
     return new Promise((r) => {
-      setTimeout(() => r(x + 30));
+      setTimeout(() => r((x as number) + 30));
     });
   });
 
@@ -121,7 +121,9 @@ it('should not throw error if untap called twice', () => {
   const untap = hooks.tap('q', callbackFnQ);
   hooks.clear();
 
-  expect(() => { untap(); }).not.toThrow();
+  expect(() => {
+    untap();
+  }).not.toThrow();
   const value = hooks.call('q', 1);
 
   expect(callbackFnQ).not.toBeCalled();
@@ -129,7 +131,7 @@ it('should not throw error if untap called twice', () => {
 });
 
 it('should throw error when callback is not a function', () => {
-  expect(() => hooks.tap('q')).toThrow(TypeError);
+  expect(() => hooks.tap('q', undefined as any)).toThrow(TypeError);
 });
 
 it('should go nothing when taps does not exist', async () => {

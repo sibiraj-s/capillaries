@@ -80,7 +80,7 @@ it('should invoke event listeners with given arguments', () => {
 });
 
 it('should throw error when event listerner is not a function', () => {
-  expect(() => event.on('q')).toThrow(TypeError);
+  expect(() => event.on('q', undefined as any)).toThrow(TypeError);
 });
 
 it('should not throw error when event is unsbscribed already', () => {
@@ -91,7 +91,9 @@ it('should not throw error when event is unsbscribed already', () => {
   event.unbindAll('q');
   event.emit('q', payload);
 
-  expect(() => { unsbscribe(); }).not.toThrow();
+  expect(() => {
+    unsbscribe();
+  }).not.toThrow();
   expect(callbackFnQ).not.toBeCalled();
 });
 
@@ -158,15 +160,23 @@ it('should be immutable', () => {
   const func = vi.fn();
   const callbackFnQ = vi.fn();
 
-  expect(() => { event.on = func; }).toThrow(TypeError);
-  expect(() => { event.emit = func; }).toThrow(TypeError);
-  expect(() => { event.unbindAll = func; }).toThrow(TypeError);
-  expect(() => { event.newFunc = func; }).toThrow(TypeError);
+  expect(() => {
+    event.on = func;
+  }).toThrow(TypeError);
+  expect(() => {
+    event.emit = func;
+  }).toThrow(TypeError);
+  expect(() => {
+    event.unbindAll = func;
+  }).toThrow(TypeError);
+  expect(() => {
+    (event as any).newFunc = func;
+  }).toThrow(TypeError);
 
   event.on('q', callbackFnQ);
   event.emit('q', payload);
 
   expect(func).not.toBeCalled();
-  expect(typeof event.newFunc).toBe('undefined');
+  expect(typeof (event as any).newFunc).toBe('undefined');
   expect(callbackFnQ).toBeCalled();
 });

@@ -42,7 +42,9 @@ it('should throw error when registered twice', () => {
 
   events.on('q', callbackFn);
 
-  expect(() => { events.on('q', callbackFn); }).toThrow();
+  expect(() => {
+    events.on('q', callbackFn);
+  }).toThrow();
 });
 
 it('should throw if handler is not a function', () => {
@@ -51,11 +53,15 @@ it('should throw if handler is not a function', () => {
   events.on('q', callbackFn);
   events.unbindAll();
 
-  expect(() => { events.on('q', 'callbackFn'); }).toThrow();
+  expect(() => {
+    events.on('q', 'callbackFn' as any);
+  }).toThrow();
 });
 
 it('should throw if no handler is registered', () => {
-  expect(() => { events.call('r', 'Payload'); }).toThrow();
+  expect(() => {
+    events.call('r', 'Payload' as any);
+  }).toThrow();
 });
 
 it('should not emit any events after unbindAll', () => {
@@ -64,6 +70,8 @@ it('should not emit any events after unbindAll', () => {
   events.on('q', callbackFn);
   events.unbindAll();
 
-  expect(() => { events.call('q', 'Payload'); }).toThrow();
+  expect(() => {
+    events.call('q', 'Payload' as any);
+  }).toThrow();
   expect(callbackFn).not.toHaveBeenCalled();
 });
