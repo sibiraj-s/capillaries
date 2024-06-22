@@ -14,6 +14,14 @@ All notable changes to this project will be documented in this file.
 > - Internal
 > - Unreleased
 
+## v5.0.0 (2024-06-22)
+
+#### Enhancements
+
+- rewrite to typescript ([bbb93e0](https://github.com/sibiraj-s/capillaries/commit/bbb93e0))
+- improved typings ([bbb93e0](https://github.com/sibiraj-s/capillaries/commit/bbb93e0))
+- switch from jest to vitest ([8b3855b](https://github.com/sibiraj-s/capillaries/commit/8b3855b))
+
 ## v4.1.0 (2021-06-25)
 
 #### Features
@@ -30,13 +38,13 @@ All notable changes to this project will be documented in this file.
 Before
 
 ```js
-event.on("*", (payload) => {});
+event.on('*', (payload) => {});
 ```
 
 Now
 
 ```js
-event.on("*", (type, payload) => {});
+event.on('*', (type, payload) => {});
 ```
 
 ## v3.2.0 (2021-06-14)
@@ -91,12 +99,12 @@ const event = new Events();
 
 const handler = () => {};
 
-event.on("a", handler);
+event.on('a', handler);
 
 // To Unsubscribe
-event.off("a", handler);
+event.off('a', handler);
 // or
-event.off("a");
+event.off('a');
 ```
 
 **After**
@@ -106,12 +114,12 @@ const event = new Events();
 
 const handler = () => {};
 
-const unsubscribe = event.on("a", handler);
+const unsubscribe = event.on('a', handler);
 
 // To Unsubscribe
 unsubscribe();
 // or
-event.unbindAll("a");
+event.unbindAll('a');
 ```
 
 ## v2.1.2 (2021-01-05)
