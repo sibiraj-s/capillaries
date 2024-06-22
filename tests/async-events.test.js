@@ -1,4 +1,4 @@
-import { afterEach, expect, it, jest } from '@jest/globals';
+import { afterEach, expect, it, vi } from 'vitest';
 
 import { AsyncEvents } from '../capillaries';
 
@@ -14,13 +14,13 @@ it('should initiate correctly', () => {
 });
 
 it('should bind to events and invoke events when emitted', async () => {
-  const callbackFnQ = jest.fn().mockImplementation((x) => {
+  const callbackFnQ = vi.fn().mockImplementation((x) => {
     return new Promise((r) => {
       setTimeout(() => r(x + 30), 100);
     });
   });
 
-  const callbackFnR = jest.fn();
+  const callbackFnR = vi.fn();
 
   events.on('q', callbackFnQ);
   events.on('r', callbackFnR);
@@ -38,7 +38,7 @@ it('should bind to events and invoke events when emitted', async () => {
 });
 
 it('should throw error when registered twice', () => {
-  const callbackFn = jest.fn();
+  const callbackFn = vi.fn();
 
   events.on('q', callbackFn);
 
@@ -46,7 +46,7 @@ it('should throw error when registered twice', () => {
 });
 
 it('should throw if handler is not a function', () => {
-  const callbackFn = jest.fn();
+  const callbackFn = vi.fn();
 
   events.on('q', callbackFn);
   events.unbindAll();
@@ -59,7 +59,7 @@ it('should throw if no handler is registered', () => {
 });
 
 it('should not emit any events after unbindAll', () => {
-  const callbackFn = jest.fn();
+  const callbackFn = vi.fn();
 
   events.on('q', callbackFn);
   events.unbindAll();

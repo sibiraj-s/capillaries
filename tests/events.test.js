@@ -1,4 +1,4 @@
-import { afterEach, expect, it, jest } from '@jest/globals';
+import { afterEach, expect, it, vi } from 'vitest';
 
 import Capillaries from '../capillaries';
 
@@ -16,9 +16,9 @@ it('should initiate correctly', () => {
 });
 
 it('should bind to events and invoke events when emitted', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
-  const callbackFnT = jest.fn();
+  const callbackFnQ = vi.fn();
+  const callbackFnR = vi.fn();
+  const callbackFnT = vi.fn();
 
   event.on('q', callbackFnQ);
   event.on('r', callbackFnR);
@@ -40,7 +40,7 @@ it('should bind to events and invoke events when emitted', () => {
 });
 
 it('should invoke wildcard `*` event listener for all events', () => {
-  const callbackFn = jest.fn();
+  const callbackFn = vi.fn();
 
   event.on('*', callbackFn);
 
@@ -54,8 +54,8 @@ it('should invoke wildcard `*` event listener for all events', () => {
 });
 
 it('should not call other functions for wildcard event `*`', () => {
-  const callbackFn = jest.fn();
-  const callbackFnT = jest.fn();
+  const callbackFn = vi.fn();
+  const callbackFnT = vi.fn();
 
   event.on('*', callbackFn);
   event.on('t', callbackFnT);
@@ -66,7 +66,7 @@ it('should not call other functions for wildcard event `*`', () => {
 });
 
 it('should invoke event listeners with given arguments', () => {
-  const callbackFn = jest.fn();
+  const callbackFn = vi.fn();
 
   event.on('t', callbackFn);
   event.emit('t', payload);
@@ -84,7 +84,7 @@ it('should throw error when event listerner is not a function', () => {
 });
 
 it('should not throw error when event is unsbscribed already', () => {
-  const callbackFnQ = jest.fn();
+  const callbackFnQ = vi.fn();
 
   const unsbscribe = event.on('q', callbackFnQ);
 
@@ -96,8 +96,8 @@ it('should not throw error when event is unsbscribed already', () => {
 });
 
 it('should unbind all events for a specified type', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnQ2 = jest.fn();
+  const callbackFnQ = vi.fn();
+  const callbackFnQ2 = vi.fn();
 
   event.on('q', callbackFnQ);
   event.on('q', callbackFnQ2);
@@ -111,8 +111,8 @@ it('should unbind all events for a specified type', () => {
 });
 
 it('should unbind correct events', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
+  const callbackFnQ = vi.fn();
+  const callbackFnR = vi.fn();
 
   const unsubscribe = event.on('q', callbackFnQ);
   event.on('r', callbackFnR);
@@ -129,10 +129,10 @@ it('should unbind correct events', () => {
 it('should unbind all when `unbindAll` is invoked', () => {
   const evt = new Capillaries();
 
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
-  const callbackFnS = jest.fn();
-  const callbackFnT = jest.fn();
+  const callbackFnQ = vi.fn();
+  const callbackFnR = vi.fn();
+  const callbackFnS = vi.fn();
+  const callbackFnT = vi.fn();
 
   evt.on('q', callbackFnQ);
   evt.on('r', callbackFnR);
@@ -155,8 +155,8 @@ it('should unbind all when `unbindAll` is invoked', () => {
 });
 
 it('should be immutable', () => {
-  const func = jest.fn();
-  const callbackFnQ = jest.fn();
+  const func = vi.fn();
+  const callbackFnQ = vi.fn();
 
   expect(() => { event.on = func; }).toThrow(TypeError);
   expect(() => { event.emit = func; }).toThrow(TypeError);

@@ -4,7 +4,6 @@ extends:
 
 plugins:
   - '@babel'
-  - jest
 
 parser: '@babel/eslint-parser'
 

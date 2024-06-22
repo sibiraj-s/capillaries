@@ -1,4 +1,4 @@
-import { afterEach, expect, it, jest } from '@jest/globals';
+import { afterEach, expect, it, vi } from 'vitest';
 
 import { Hooks } from '../capillaries';
 
@@ -17,7 +17,7 @@ it('should initiate correctly', () => {
 });
 
 it('should invoke callAsyncWaterFall hook correctly', async () => {
-  const callbackFnQ = jest.fn((x) => x + 2);
+  const callbackFnQ = vi.fn((x) => x + 2);
 
   hooks.tap('q', (x) => {
     return new Promise((r) => {
@@ -34,8 +34,8 @@ it('should invoke callAsyncWaterFall hook correctly', async () => {
 });
 
 it('should invoke callWaterFall hook correctly', async () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
-  const callbackFnQ2 = jest.fn().mockReturnValue(3);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
+  const callbackFnQ2 = vi.fn().mockReturnValue(3);
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('q', callbackFnQ2);
@@ -48,8 +48,8 @@ it('should invoke callWaterFall hook correctly', async () => {
 });
 
 it('should invoke call hook correctly', () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
-  const callbackFnQ2 = jest.fn().mockReturnValue(3);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
+  const callbackFnQ2 = vi.fn().mockReturnValue(3);
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('q', callbackFnQ2);
@@ -62,8 +62,8 @@ it('should invoke call hook correctly', () => {
 });
 
 it('should invoke callAsync hook correctly', async () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
-  const callbackFnQ2 = jest.fn().mockReturnValue(3);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
+  const callbackFnQ2 = vi.fn().mockReturnValue(3);
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('q', callbackFnQ2);
@@ -76,8 +76,8 @@ it('should invoke callAsync hook correctly', async () => {
 });
 
 it('should return given payload when there are no hooks in callAsyncWaterFall', async () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
-  const callbackFnQ2 = jest.fn().mockReturnValue(3);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
+  const callbackFnQ2 = vi.fn().mockReturnValue(3);
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('q', callbackFnQ2);
@@ -90,8 +90,8 @@ it('should return given payload when there are no hooks in callAsyncWaterFall', 
 });
 
 it('should return given payload when there are no hooks in callWaterFall', () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
-  const callbackFnQ2 = jest.fn().mockReturnValue(3);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
+  const callbackFnQ2 = vi.fn().mockReturnValue(3);
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('q', callbackFnQ2);
@@ -104,7 +104,7 @@ it('should return given payload when there are no hooks in callWaterFall', () =>
 });
 
 it('should be able to untap a tap', () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
 
   const untap = hooks.tap('q', callbackFnQ);
   untap();
@@ -116,7 +116,7 @@ it('should be able to untap a tap', () => {
 });
 
 it('should not throw error if untap called twice', () => {
-  const callbackFnQ = jest.fn().mockReturnValue(2);
+  const callbackFnQ = vi.fn().mockReturnValue(2);
 
   const untap = hooks.tap('q', callbackFnQ);
   hooks.clear();
@@ -133,7 +133,7 @@ it('should throw error when callback is not a function', () => {
 });
 
 it('should go nothing when taps does not exist', async () => {
-  const callbackFnQ = jest.fn();
+  const callbackFnQ = vi.fn();
   hooks.tap('q', callbackFnQ);
 
   const value = hooks.call('r', 1);
@@ -145,9 +145,9 @@ it('should go nothing when taps does not exist', async () => {
 });
 
 it('should clear the hooks correctly', () => {
-  const callbackFnQ = jest.fn();
-  const callbackFnR = jest.fn();
-  const callbackFnT = jest.fn();
+  const callbackFnQ = vi.fn();
+  const callbackFnR = vi.fn();
+  const callbackFnT = vi.fn();
 
   hooks.tap('q', callbackFnQ);
   hooks.tap('r', callbackFnR);

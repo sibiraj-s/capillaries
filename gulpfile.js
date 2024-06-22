@@ -1,14 +1,14 @@
-const path = require('node:path');
-const fs = require('node:fs/promises');
+import path from 'node:path';
+import fs from 'node:fs/promises';
 
-const gulp = require('gulp');
-const rollup = require('rollup');
-const { babel } = require('@rollup/plugin-babel');
-const terser = require('gulp-plugin-terser');
+import gulp from 'gulp';
+import { rollup } from 'rollup';
+import { babel } from '@rollup/plugin-babel';
+import terser from 'gulp-plugin-terser';
 
-const pkg = require('./package.json');
+const pkg = await fs.readFile('./package.json');
 
-const outDir = path.resolve(__dirname, 'dist');
+const outDir = path.resolve(import.meta.dirname, 'dist');
 
 const banner = `/*!
  * @module ${pkg.name}
@@ -24,7 +24,7 @@ const cleanOutDir = async function () {
 };
 
 const compile = async function () {
-  const bundle = await rollup.rollup({
+  const bundle = await rollup({
     input: './capillaries.js',
     plugins: [
       babel({ babelHelpers: 'bundled' }),
@@ -99,7 +99,6 @@ const copyFiles = function () {
   ]).pipe(gulp.dest(outDir));
 };
 
-const build = gulp.series(cleanOutDir, compile, minify, copyFiles, preparePackageJson);
+export const build = gulp.series(cleanOutDir, compile, minify, copyFiles, preparePackageJson);
 
-exports.build = build;
-exports.default = build;
+export default build;
