@@ -5,7 +5,7 @@
   "author": "sibiraj-s",
   "license": "MIT",
   "private": true,
-  "repository": "https://github.com/sibiraj-s/capillaries.git",
+  "repository": "github:sibiraj-s/capillaries",
   "bugs": "https://github.com/sibiraj-s/capillaries/issues",
   "homepage": "https://github.com/sibiraj-s/capillaries#readme",
   "main": "capillaries.ts",
