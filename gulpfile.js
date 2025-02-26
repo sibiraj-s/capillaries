@@ -5,25 +5,24 @@ import gulp from 'gulp';
 import tsup from 'tsup';
 import terser from 'gulp-plugin-terser';
 
-const pkgString = await fs.readFile('./package.json', 'utf-8');
-const pkg = JSON.parse(pkgString);
-
 const outDir = path.resolve(import.meta.dirname, 'dist');
-
-const banner = `/*!
- * @module ${pkg.name}
- * @description ${pkg.description}
- * @version ${pkg.version}
- * @link ${pkg.repository}
- * @licence MIT License, https://opensource.org/licenses/MIT
- */
-`;
 
 const cleanOutDir = async function () {
   await fs.rm(outDir, { recursive: true, force: true });
 };
 
 const compile = async function () {
+  const pkgString = await fs.readFile('./package.json', 'utf-8');
+  const pkg = JSON.parse(pkgString);
+
+  const banner = `/*!
+ * @module ${pkg.name}
+ * @description ${pkg.description}
+ * @version ${pkg.version}
+ * @link ${pkg.repository}
+ * @licence MIT License, https://opensource.org/licenses/MIT
+ */`;
+
   await tsup.build({
     entry: ['./capillaries.ts'],
     format: ['esm', 'cjs'],
