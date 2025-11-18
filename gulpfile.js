@@ -2,7 +2,7 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 
 import gulp from 'gulp';
-import tsup from 'tsup';
+import * as tsdown from 'tsdown';
 import terser from 'gulp-plugin-terser';
 
 const outDir = path.resolve(import.meta.dirname, 'dist');
@@ -23,12 +23,11 @@ const compile = async function () {
  * @licence MIT License, https://opensource.org/licenses/MIT
  */`;
 
-  await tsup.build({
+  await tsdown.build({
     entry: ['./capillaries.ts'],
     format: ['esm', 'cjs'],
     outDir: 'dist',
     clean: true,
-    splitting: false,
     sourcemap: true,
     dts: true,
     minify: false,
@@ -53,9 +52,9 @@ const preparePackageJson = async function () {
 
   const packageJson = JSON.parse(jsonStr);
 
-  packageJson.module = 'capillaries.js';
+  packageJson.module = 'capillaries.mjs';
+  packageJson.types = 'capillaries.d.mts';
   packageJson.main = 'capillaries.cjs';
-  packageJson.types = 'capillaries.d.ts';
   packageJson.exports = {
     '.': {
       require: {
@@ -63,8 +62,8 @@ const preparePackageJson = async function () {
         default: './capillaries.cjs',
       },
       import: {
-        types: './capillaries.d.ts',
-        default: './capillaries.js',
+        types: './capillaries.d.mts',
+        default: './capillaries.mjs',
       },
     },
   };
