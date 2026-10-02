@@ -28,19 +28,19 @@
     "prepublishOnly": "is-ci || (npm run build && publint dist/)"
   },
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/cli": "^21.2.3",
+    "@commitlint/config-conventional": "^21.2.3",
     "gulp": "^5.0.1",
     "gulp-plugin-terser": "^4.0.1",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
-    "lint-staged": "^16.2.6",
-    "oxlint": "^1.29.0",
-    "prettier": "^3.6.2",
-    "publint": "^0.3.15",
-    "terser": "^5.44.1",
-    "tsdown": "^0.16.5",
-    "typescript": "^5.9.3",
-    "vitest": "^4.1.0"
+    "lint-staged": "^17.6.0",
+    "oxlint": "^1.86.0",
+    "prettier": "^3.9.9",
+    "publint": "^0.3.25",
+    "terser": "^5.51.2",
+    "tsdown": "^0.23.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
   }
 }
