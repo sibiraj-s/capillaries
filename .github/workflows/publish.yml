@@ -33,4 +33,4 @@ jobs:
       - name: Build
         run: npm run build
 
-      - run: npm publish dist/
+      - run: npm stage publish dist/
